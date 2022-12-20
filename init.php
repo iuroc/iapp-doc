@@ -32,6 +32,7 @@ class Init
         $sql = "CREATE TABLE IF NOT EXISTS `$table` (
             `id` int NOT NULL AUTO_INCREMENT COMMENT '手册ID',
             `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上传时间',
+            `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
             `intro` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '手册介绍',
             `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '手册标题',
             PRIMARY KEY (`id`) USING BTREE
