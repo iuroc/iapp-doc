@@ -32,15 +32,9 @@
 | ----------- | -------- | -------- |
 | id          | int      | 文章ID   |
 | title       | varchar  | 文章标题 |
-| content     | varchar  | 正文内容 |
+| content     | text     | 正文内容 |
 | update_time | datetime | 更新时间 |
-
-## 手册和文章关联（iapp_doc_into）
-
-| 字段名     | 类型 | 描述   |
-| ---------- | ---- | ------ |
-| book_id    | int  | 手册ID |
-| article_id | int  | 文章ID |
+| book_id     | int      | 手册ID   |
 
 ## 路由规划
 
