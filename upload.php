@@ -1,5 +1,6 @@
 <?php
-require('require.php');
+require('./config.php');
+require('./init.php');
 /**
  * 上传手册
  */
@@ -28,7 +29,7 @@ class Upload
     /**
      * 当前脚本相对路径
      */
-    public const PATH = '/control/upload.php';
+    public const PATH = '/upload.php';
     public function __construct()
     {
         $this->action = $_POST['action'] ?? '';
@@ -148,7 +149,7 @@ new Upload();
 <html lang="zh-CN">
 
 <head>
-    <?php include '../head.php' ?>
+    <?php require('./head.php') ?>
     <title>上传手册</title>
     <script>
         const PAGE_NAME = 'upload' // 页面标识
@@ -164,7 +165,7 @@ new Upload();
 </head>
 
 <body>
-    <?php include '../nav.php' ?>
+    <?php require('./nav.php') ?>
     <div class="container">
         <div class="row">
             <div class="col-xxl-6 col-xl-7 col-lg-8 mx-auto">
