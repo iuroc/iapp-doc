@@ -27,6 +27,17 @@ $article = new Article();
     <meta name="description" content="<?php echo htmlentities($article->article_title) ?> <?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?> | <?php echo $article->book_info['title'] ?>">
     <meta name="keywords" content="<?php echo htmlentities($article->article_title) ?>, <?php echo $article->book_info['title'] ?>">
     <link rel="stylesheet" href="css/prism.css">
+    <style>
+        pre[class*=language-] {
+            cursor: text;
+            outline: none;
+            border-radius: 10px;
+        }
+        pre[class*=language-] code {
+            outline: none;
+            display: block;
+        }
+    </style>
     <script>
         const PAGE_NAME = 'book' // 页面标识
     </script>
@@ -70,13 +81,21 @@ $article = new Article();
         function parse_print($text)
         {
             // $text = htmlentities($text);
-            return json_encode(['text' => $text]);
+            return json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
         }
         ?>
         let data = <?php echo parse_print($article->article_info['content']) . PHP_EOL ?>
         document.getElementById('content').innerHTML = marked.parse(data.text);
     </script>
     <script src="js/prism.js"></script>
+    <script>
+        setTimeout(() => {
+            let codeEles = document.querySelectorAll('pre[class*=language-] code')
+            codeEles.forEach(ele => {
+                ele.contentEditable = true
+            })
+        }, 100);
+    </script>
 </body>
 
 </html>
