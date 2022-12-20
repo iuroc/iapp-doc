@@ -44,10 +44,10 @@ class Upload
     {
         // 验证管理员密码
         $password = $_POST['password'] ?? '';
+        setcookie('password', $password, 0, '/');
         if ($password != Config::$admin['password']) {
             die('管理员密码错误');
         }
-        setcookie('password', $password, 0, '/');
         // 获取文件数据
         $this->file = $_FILES['file'] ?? null;
         if (!$this->file || $this->file['error'] > 0) {
@@ -167,7 +167,7 @@ new Upload();
     <?php include '../nav.php' ?>
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 mx-auto">
+            <div class="col-xxl-6 col-xl-7 col-lg-8 mx-auto">
                 <form action="" method="POST" enctype="multipart/form-data">
                     <h3 class="mb-3">手册上传</h3>
                     <div class="mb-3">
