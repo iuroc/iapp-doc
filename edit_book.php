@@ -66,7 +66,7 @@ $edit_book = new Edit_book();
                         <textarea class="form-control" name="intro" rows="5" id="bookIntro" placeholder="这是一本神奇的手册..." required><?php echo $edit_book->book_info['intro'] ?></textarea>
                     </div>
                     <input type="hidden" name="action" value="edit">
-                    <button class="btn btn-success">提交修改</button>
+                    <button class="btn btn-success mb-3">提交修改</button>
                 </form>
             </div>
         </div>
