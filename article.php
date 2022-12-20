@@ -38,6 +38,14 @@ $article = new Article();
             outline: none;
             display: block;
         }
+
+        .language-css .token.string,
+        .style .token.string,
+        .token.entity,
+        .token.operator,
+        .token.url {
+            background: none;
+        }
     </style>
     <script>
         const PAGE_NAME = 'book' // 页面标识

@@ -123,7 +123,7 @@ $edit_article = new Edit_article();
                 <textarea class="form-control" name="content" rows="15" id="articleContent" placeholder="" required><?php echo $edit_article->mode_edit ? $edit_article->article_info['content'] : '' ?></textarea>
             </div>
             <input type="hidden" name="submit" value="1">
-            <button class="btn btn-success">提交修改</button>
+            <button class="btn btn-success mb-3">提交修改</button>
         </form>
     </div>
     <script>

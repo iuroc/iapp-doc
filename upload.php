@@ -153,7 +153,7 @@ new Upload();
                         <textarea class="form-control" name="intro" rows="5" id="bookIntro" placeholder="这是一本神奇的手册..." required></textarea>
                     </div>
                     <input type="hidden" name="action" value="submit">
-                    <input type="submit" class="btn btn-success" value="提交">
+                    <input type="submit" class="btn btn-success mb-3" value="提交">
                 </form>
             </div>
         </div>
