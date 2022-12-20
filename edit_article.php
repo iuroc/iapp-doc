@@ -35,6 +35,7 @@ class Edit_article extends Public_fun
                 $this->get_title();
                 $this->get_content();
                 $this->update();
+                $this->update_book_info();
                 header('location: ./article.php?article_id=' . $this->article_id);
             }
         } else {
@@ -46,10 +47,20 @@ class Edit_article extends Public_fun
                 $this->get_title();
                 $this->get_content();
                 $this->create_article();
+                $this->update_book_info();
                 $this->article_id = $this->get_new_article_id();
                 header('location: ./article.php?article_id=' . $this->article_id);
             }
         }
+    }
+    /**
+     * 更新手册的更新时间
+     */
+    public function update_book_info()
+    {
+        $table = Config::$table['book'];
+        $sql = "UPDATE `$table` SET `update_time` = CURRENT_TIMESTAMP WHERE `id` = {$this->book_id};";
+        mysqli_query(Init::$conn, $sql);
     }
     /**
      * 获取最新一条文章记录的 ID 值

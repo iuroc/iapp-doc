@@ -52,8 +52,16 @@ $article = new Article();
         <div class="mb-4">
             <a class="btn btn-outline-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=' . $article->article_info['id'] . '">编辑</a>
             <button class="btn btn-outline-success btn-sm me-2">复制</button>
-            <a class="btn btn-outline-danger btn-sm" href="delete_article.php?book_id=' . $article->book_info['id'] . '&article_id=' . $article->article_info['id'] . '">删除</a>
-        </div>';
+            <a class="btn btn-outline-danger btn-sm" onclick="delete_article(' . $article->book_info['id'] . ', ' . $article->article_info['id'] . ')">删除</a>
+        </div>
+        <script>
+            function delete_article(id) {
+                let url = "' . 'delete_article.php?book_id=' . $article->book_info['id'] . '&article_id=' . $article->article_info['id'] . '";
+                if (confirm(\'确定要删除该文章？\')) {
+                    location.href = url
+                }
+            }
+        </script>';
         }
         ?>
     </div>
