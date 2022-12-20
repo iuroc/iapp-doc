@@ -130,6 +130,7 @@ $edit_article = new Edit_article();
         let contentEle = document.getElementById('articleContent')
         contentEle.placeholder = '请输入文章内容\n文档严格遵循 Markdown 语法'
     </script>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>

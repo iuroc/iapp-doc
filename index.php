@@ -54,6 +54,7 @@ $index = new Index();
             ?>
         </div>
     </div>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>

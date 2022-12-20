@@ -171,6 +171,7 @@ new Upload();
         limitInputNum(nameDom, 250)
         limitInputNum(introDom, 500)
     </script>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>

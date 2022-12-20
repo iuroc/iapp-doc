@@ -84,6 +84,7 @@ $book = new Book();
         }
         ?>
     </div>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>

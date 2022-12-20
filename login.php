@@ -70,6 +70,7 @@ $login = new Login();
         }
         ?>
     </div>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>

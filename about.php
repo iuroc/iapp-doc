@@ -27,6 +27,7 @@
             <li>开发日期：2022年12月19日</li>
         </ul>
     </div>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>

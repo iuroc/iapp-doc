@@ -100,6 +100,7 @@ $article = new Article();
 
         }, 100);
     </script>
+    <?php require('./footer.php') ?>
 </body>
 
 </html>
