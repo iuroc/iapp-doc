@@ -50,9 +50,11 @@ $login = new Login();
         </nav>
         <?php if ($login->has_login) {
             echo '
-        <a class="btn btn-success me-2" href="upload.php">上传手册</a>
-        <a class="btn btn-warning me-2" href="output.php">导出数据库</a>
-        <a class="btn btn-danger" href="logout.php">退出登录</a>';
+        <div class="mb-3">
+            <a class="btn btn-success me-2" href="upload.php">上传手册</a>
+            <a class="btn btn-warning me-2" href="output.php">导出数据库</a>
+            <a class="btn btn-danger" href="logout.php">退出登录</a>
+        </div>';
         } else {
             echo '
         <div class="row">
