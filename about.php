@@ -19,17 +19,13 @@
 <body>
     <?php include './nav.php' ?>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mx-auto">
-                <div class="h3 mb-3">关于</div>
-                <ul>
-                    <li class="mb-1">Github：<a href="https://github.com/oyps/iapp-doc" target="_blank">https://github.com/oyps/iapp-doc</a></li>
-                    <li class="mb-1">作者：欧阳鹏</li>
-                    <li class="mb-1">官网：<a href="https://apee.top" target="_blank">https://apee.top</a></li>
-                    <li>开发日期：2022年12月19日</li>
-                </ul>
-            </div>
-        </div>
+        <div class="h3 mb-3">关于</div>
+        <ul>
+            <li class="mb-1">Github：<a href="https://github.com/oyps/iapp-doc" target="_blank">https://github.com/oyps/iapp-doc</a></li>
+            <li class="mb-1">作者：欧阳鹏</li>
+            <li class="mb-1">官网：<a href="https://apee.top" target="_blank">https://apee.top</a></li>
+            <li>开发日期：2022年12月19日</li>
+        </ul>
     </div>
 </body>
 
