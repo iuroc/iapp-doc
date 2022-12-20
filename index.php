@@ -25,8 +25,6 @@ class Index
 }
 $index = new Index();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 

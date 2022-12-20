@@ -13,17 +13,11 @@ class Book extends Public_fun
         $this->get_book_id();
         $this->get_book_info();
         $this->get_article_list();
+        $this->if_has_login();
     }
-    public function get_book_id()
-    {
-        $book_id = $_GET['book_id'] ?? '';
-        if ($book_id == '') {
-            die('手册ID不能为空');
-        }
-        $this->book_id = $book_id;
-    }
+
     /**
-     * 获取文章列表
+     * 获取文章列表，返回到 `$this->article_list`
      */
     public function get_article_list()
     {
@@ -57,7 +51,7 @@ $book = new Book();
                 <li class="breadcrumb-item active"><?php echo $book->book_title ?></li>
             </ol>
         </nav>
-        <div class="row mb-3">
+        <div class="row">
             <?php
             foreach ($book->article_list as $article_info) {
                 echo '
@@ -71,6 +65,24 @@ $book = new Book();
             }
             ?>
         </div>
+        <?php
+        if ($book->has_login) {
+            echo '
+        <div class="pb-3 sticky-bottom">
+            <a class="btn btn-sm btn-primary me-2" href="edit_book.php?book_id=' . $book->book_info['id'] . '">编辑手册</a>
+            <a class="btn btn-sm btn-success me-2" href="edit_article.php?book_id=' . $book->book_info['id'] . '">新增文章</a>
+            <button class="btn btn-sm btn-danger" onclick="delete_book(' . $book->book_info['id'] . ')">删除手册</button>
+        </div>
+        <script>
+            function delete_book(id) {
+                let url = "' . 'delete_book.php?book_id=' . $book->book_info['id'] . '";
+                if (confirm(\'确定要删除该手册？\')) {
+                    location.href = url
+                }
+            }
+        </script>';
+        }
+        ?>
     </div>
 </body>
 

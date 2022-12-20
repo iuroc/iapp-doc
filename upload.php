@@ -1,27 +1,22 @@
 <?php
 require('./config.php');
 require('./init.php');
+require('./public_fun.php');
 /**
  * 上传手册
  */
-class Upload
+class Upload extends Public_fun
 {
     /**
      * 手册文件
      */
     public array $file;
-    /**
-     * 手册名称
-     */
-    public string $title;
+    
     /**
      * 访问类型
      */
     public string $action;
-    /**
-     * 手册介绍
-     */
-    public string $intro = '';
+    
     /**
      * 手册内容
      */
@@ -66,35 +61,7 @@ class Upload
         $this->create_book();
         $this->create_article();
     }
-    /**
-     * 获取 `title` 参数
-     */
-    public function get_title()
-    {
-        $title = $_POST['title'] ?? '';
-        if (!$title) {
-            preg_match('/^(.*)\..*$/', $this->file['name'], $matches);
-            $title = $matches[1] ?? $this->file['name'];
-        }
-        if (!$title) {
-            die('请输入手册标题');
-        }
-        if (mb_strlen($title) > 255) {
-            die('标题过长');
-        }
-        $this->title = addslashes($title);
-    }
-    /**
-     * 获取 `intro` 参数
-     */
-    public function get_intro()
-    {
-        $intro = $_POST['intro'] ?? '';
-        if (mb_strlen($intro) > 500) {
-            die('介绍文本过长');
-        }
-        $this->intro = addslashes($intro);
-    }
+    
     /**
      * 创建手册
      */
@@ -170,10 +137,10 @@ new Upload();
     <div class="container">
         <div class="row">
             <div class="col-xxl-6 col-xl-7 col-lg-8 mx-auto">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <h4 class="mb-3">手册上传</h4>
                     <div class="mb-3">
-                        <label for="bookName" class="form-label">手册名称</label>
+                        <label for="bookName" class="form-label">手册名称（250字以内）</label>
                         <input type="text" class="form-control" name="title" id="bookName" placeholder="请输入手册名称" required>
                     </div>
                     <div class="mb-3">
@@ -183,7 +150,7 @@ new Upload();
                     </div>
                     <div class="mb-3">
                         <label for="bookIntro" class="form-label">手册介绍（500 字以内）</label>
-                        <textarea class="form-control" name="intro" id="bookIntro" placeholder="这是一本神奇的手册..." required></textarea>
+                        <textarea class="form-control" name="intro" rows="5" id="bookIntro" placeholder="这是一本神奇的手册..." required></textarea>
                     </div>
                     <input type="hidden" name="action" value="submit">
                     <input type="submit" class="btn btn-success" value="提交">
@@ -191,6 +158,19 @@ new Upload();
             </div>
         </div>
     </div>
+    <script>
+        function limitInputNum(element, num) {
+            element.addEventListener('keyup', function(event) {
+                if (element.value.length >= num) {
+                    element.value = element.value.substr(0, num)
+                }
+            })
+        }
+        let introDom = document.getElementById('bookIntro')
+        let nameDom = document.getElementById('bookName')
+        limitInputNum(nameDom, 250)
+        limitInputNum(introDom, 500)
+    </script>
 </body>
 
 </html>

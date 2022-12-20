@@ -7,12 +7,13 @@
 - 作者：欧阳鹏
 - 开发日期：2022年12月19日
 - 官网：https://apee.top
+- 关键词：PHP、Bootstrap、伪静态、Cookie、文件上传
 
 ## 功能规划
 
 - 代码搜索（标题、全文）
-- 一键编辑
-- Markdown 语法支持（需要人工对全文进行矫正）
+- 文章可编辑，手册可增加文章
+- Markdown 默认支持
 - 控制台：导入手册、删除手册
 
 ## 数据库设计
@@ -46,3 +47,9 @@
 | /article/123     | /article.php?article_id=123          | 某文章页面 |
 | /search/all/1234 | /search.php?book_id=all&keyword=1234 | 搜索       |
 | /control/upload  | /control/upload.php                  | 上传手册   |
+
+## 待优化
+
+- `document.title` 统一化
+- `require` 统一化，`location` 重定向适配伪静态
+- 补全关于页的项目简介
