@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-light shadow-sm sticky-top mb-4">
     <div class="container-md">
-        <a class="navbar-brand" href="#">iApp 手册网</a>
+        <a class="navbar-brand" href="/">iApp 手册网</a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,11 +9,14 @@
                 <li class="nav-item nav-item-home">
                     <a class="nav-link" href="/">主页</a>
                 </li>
-                <li class="nav-item nav-item-about">
-                    <a class="nav-link" href="/about.php">关于</a>
+                <li class="nav-item nav-item-search">
+                    <a class="nav-link" href="/search.php">搜索</a>
                 </li>
                 <li class="nav-item nav-item-upload">
-                    <a class="nav-link" href="/control/upload.php">上传</a>
+                    <a class="nav-link" href="/upload.php">上传</a>
+                </li>
+                <li class="nav-item nav-item-about">
+                    <a class="nav-link" href="/about.php">关于</a>
                 </li>
             </ul>
             <div class="d-flex">
