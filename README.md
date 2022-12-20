@@ -23,6 +23,7 @@
 | ----------- | -------- | -------- |
 | id          | int      | 手册ID   |
 | create_time | datetime | 创建时间 |
+| update_time | datetime | 更新时间 |
 | title       | varchar  | 手册标题 |
 | intro       | varchar  | 手册介绍 |
 
