@@ -33,6 +33,7 @@ $article = new Article();
             outline: none;
             border-radius: 10px;
         }
+
         pre[class*=language-] code {
             outline: none;
             display: block;
@@ -91,9 +92,12 @@ $article = new Article();
     <script>
         setTimeout(() => {
             let codeEles = document.querySelectorAll('pre[class*=language-] code')
-            codeEles.forEach(ele => {
-                ele.contentEditable = true
-            })
+            if (codeEles) {
+                codeEles.forEach(ele => {
+                    ele.contentEditable = true
+                })
+            }
+
         }, 100);
     </script>
 </body>
