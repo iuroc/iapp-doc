@@ -62,7 +62,7 @@ $book = new Book();
             foreach ($book->article_list as $article_info) {
                 echo '
             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-3">
-                <a title="' . htmlentities($article_info['title']) . '" class="justify-content-between card card-body shadow-sm h-100 text-decoration-none" href="" role="button">
+                <a title="' . htmlentities($article_info['title']) . '" class="justify-content-between card card-body shadow-sm h-100 text-decoration-none" href="article.php?article_id=' . $article_info['id'] . '" role="button">
                     <div class="h5 text-truncate">' . htmlentities($article_info['title']) . '</div>
                     <div class="mb-2 limit-line-4 text-muted text-justify">' . htmlentities(mb_substr($article_info['content'], 0, 120)) . '</div>
                     <div class="text-muted small">' . $article_info['update_time'] . ' 最后更新</div>

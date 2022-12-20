@@ -30,6 +30,10 @@ class Public_fun
      */
     public int $article_id;
     /**
+     * 文章信息
+     */
+    public array $article_info;
+    /**
      * 获取手册信息
      */
     public function get_book_info()

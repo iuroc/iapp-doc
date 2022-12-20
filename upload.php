@@ -36,6 +36,7 @@ class Upload
         if ($this->action == 'submit') {
             $this->submit();
             header('location: ' . Upload::PATH);
+            die();
         }
     }
     /**
@@ -44,10 +45,10 @@ class Upload
     public function submit()
     {
         // 验证管理员密码
-        $password = $_POST['password'] ?? '';
-        setcookie('password', $password, 0, '/');
+        $password = $_COOKIE['password'] ?? '';
         if ($password != Config::$admin['password']) {
-            die('管理员密码错误');
+            header('location: ./login.php');
+            die();
         }
         // 获取文件数据
         $this->file = $_FILES['file'] ?? null;
@@ -170,7 +171,7 @@ new Upload();
         <div class="row">
             <div class="col-xxl-6 col-xl-7 col-lg-8 mx-auto">
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <h3 class="mb-3">手册上传</h3>
+                    <h4 class="mb-3">手册上传</h4>
                     <div class="mb-3">
                         <label for="bookName" class="form-label">手册名称</label>
                         <input type="text" class="form-control" name="title" id="bookName" placeholder="请输入手册名称" required>
@@ -185,10 +186,7 @@ new Upload();
                         <textarea class="form-control" name="intro" id="bookIntro" placeholder="这是一本神奇的手册..." required></textarea>
                     </div>
                     <input type="hidden" name="action" value="submit">
-                    <div class="input-group">
-                        <input type="password" autocomplete="new-password" name="password" value="<?php echo $_COOKIE['password'] ?? '' ?>" class="form-control" placeholder="管理员密码" require>
-                        <input type="submit" class="btn btn-success" value="提交">
-                    </div>
+                    <input type="submit" class="btn btn-success" value="提交">
                 </form>
             </div>
         </div>

@@ -12,8 +12,8 @@
                 <li class="nav-item nav-item-search">
                     <a class="nav-link" href="/search.php">搜索</a>
                 </li>
-                <li class="nav-item nav-item-upload">
-                    <a class="nav-link" href="/upload.php">上传</a>
+                <li class="nav-item nav-item-login">
+                    <a class="nav-link" href="/login.php">管理员</a>
                 </li>
                 <li class="nav-item nav-item-about">
                     <a class="nav-link" href="/about.php">关于</a>
