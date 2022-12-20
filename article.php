@@ -12,6 +12,7 @@ class Article extends Public_fun
         $this->get_article_id();
         $this->get_article_info();
         $this->get_book_info();
+        $this->if_has_login();
     }
 }
 $article = new Article();
@@ -45,11 +46,16 @@ $article = new Article();
         <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
         <hr>
         <div id="content" class="mb-3"></div>
+        <?php
+        if ($article->has_login) {
+            echo '
         <div class="mb-4">
-            <a class="btn btn-outline-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=<?php echo $article->article_info['id'] ?>">编辑</a>
+            <a class="btn btn-outline-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=' . $article->article_info['id'] . '">编辑</a>
             <button class="btn btn-outline-success btn-sm me-2">复制</button>
-            <a class="btn btn-outline-danger btn-sm" href="delete_article.php?book_id=<?php echo $article->book_info['id'] ?>&article_id=<?php echo $article->article_info['id'] ?>">删除</a>
-        </div>
+            <a class="btn btn-outline-danger btn-sm" href="delete_article.php?book_id=' . $article->book_info['id'] . '&article_id=' . $article->article_info['id'] . '">删除</a>
+        </div>';
+        }
+        ?>
     </div>
     <script>
         <?php
