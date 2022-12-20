@@ -22,4 +22,11 @@ class Config
         'article' => 'iapp_doc_article',
         'into' => 'iapp_doc_into'
     ];
+    /**
+     * 管理员信息
+     */
+    public static array $admin = [
+        // 管理员密码
+        'password' => '12345678'
+    ];
 }
