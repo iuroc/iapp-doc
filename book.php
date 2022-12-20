@@ -70,7 +70,7 @@ $book = new Book();
             echo '
         <div class="pb-3 sticky-bottom">
             <a class="btn btn-sm btn-primary me-2" href="edit_book.php?book_id=' . $book->book_info['id'] . '">编辑手册</a>
-            <a class="btn btn-sm btn-success me-2" href="edit_article.php?book_id=' . $book->book_info['id'] . '">新增文章</a>
+            <a class="btn btn-sm btn-success me-2" href="edit_article.php?action=add&book_id=' . $book->book_info['id'] . '">新增文章</a>
             <button class="btn btn-sm btn-danger" onclick="delete_book(' . $book->book_info['id'] . ')">删除手册</button>
         </div>
         <script>

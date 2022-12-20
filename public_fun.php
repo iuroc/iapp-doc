@@ -42,6 +42,10 @@ class Public_fun
      */
     public string $title;
     /**
+     * 文章内容文本
+     */
+    public string $content;
+    /**
      * 手册介绍
      */
     public string $intro = '';
@@ -61,7 +65,7 @@ class Public_fun
         $this->book_title = $data['title'];
     }
     /**
-     * 获取 book_id 参数
+     * 获取 `book_id` 参数
      */
     public function get_book_id()
     {
@@ -70,6 +74,17 @@ class Public_fun
             die('手册ID不能为空');
         }
         $this->book_id = $book_id;
+    }
+    /**
+     * 获取 `article_id` 参数
+     */
+    public function get_article_id()
+    {
+        $article_id = $_GET['article_id'] ?? '';
+        if ($article_id == '') {
+            die('手册ID不能为空');
+        }
+        $this->article_id = $article_id;
     }
     /**
      * 获取 `title` 参数
@@ -90,6 +105,20 @@ class Public_fun
         $this->title = addslashes($title);
     }
     /**
+     * 获取 `title` 参数
+     */
+    public function get_content()
+    {
+        $content = $_POST['content'] ?? '';
+        if (!$content) {
+            die('请输入文章内容');
+        }
+        if (mb_strlen($content) > 65535) {
+            die('文章过长');
+        }
+        $this->content = addslashes($content);
+    }
+    /**
      * 获取 `intro` 参数
      */
     public function get_intro()
@@ -107,5 +136,18 @@ class Public_fun
     {
         $password = $_COOKIE['password'] ?? '';
         $this->has_login = $password == Config::$admin['password'];
+    }
+    /**
+     * 获取文章信息
+     */
+    public function get_article_info()
+    {
+        $table = Config::$table['article'];
+        $sql = "SELECT * FROM `$table` WHERE `id` = {$this->article_id};";
+        $result = mysqli_query(Init::$conn, $sql);
+        $article_info = mysqli_fetch_assoc($result);
+        $this->article_info = $article_info;
+        $this->book_id = $article_info['book_id'];
+        $this->article_title = $article_info['title'];
     }
 }

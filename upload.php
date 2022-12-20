@@ -30,7 +30,7 @@ class Upload extends Public_fun
         $this->action = $_POST['action'] ?? '';
         if ($this->action == 'submit') {
             $this->submit();
-            header('location: ' . Upload::PATH);
+            header('location: ./');
             die();
         }
     }

@@ -53,3 +53,4 @@
 - `document.title` 统一化
 - `require` 统一化，`location` 重定向适配伪静态
 - 补全关于页的项目简介
+- 为了优化 SEO，可以在文章页面追加原文？

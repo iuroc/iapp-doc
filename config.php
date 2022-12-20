@@ -29,4 +29,8 @@ class Config
         // 管理员密码
         'password' => '12345678'
     ];
+    /**
+     * 网站名称
+     */
+    public static string $site_title = 'iApp 手册网';
 }

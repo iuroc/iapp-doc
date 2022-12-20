@@ -13,24 +13,6 @@ class Article extends Public_fun
         $this->get_article_info();
         $this->get_book_info();
     }
-    public function get_article_id()
-    {
-        $article_id = $_GET['article_id'] ?? '';
-        if ($article_id == '') {
-            die('手册ID不能为空');
-        }
-        $this->article_id = $article_id;
-    }
-    public function get_article_info()
-    {
-        $table = Config::$table['article'];
-        $sql = "SELECT * FROM `$table` WHERE `id` = {$this->article_id};";
-        $result = mysqli_query(Init::$conn, $sql);
-        $article_info = mysqli_fetch_assoc($result);
-        $this->article_info = $article_info;
-        $this->book_id = $article_info['book_id'];
-        $this->article_title = $article_info['title'];
-    }
 }
 $article = new Article();
 ?>
@@ -41,7 +23,8 @@ $article = new Article();
     <?php require('./head.php') ?>
     <title><?php echo $article->article_title ?> - iApp 手册网</title>
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
-    <meta name="description" content="<?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?>">
+    <meta name="description" content="<?php echo htmlentities($article->article_title) ?> <?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?> | <?php echo $article->book_info['title'] ?>">
+    <meta name="keywords" content="<?php echo htmlentities($article->article_title) ?>, <?php echo $article->book_info['title'] ?>">
     <link rel="stylesheet" href="css/prism.css">
     <script>
         const PAGE_NAME = 'book' // 页面标识
@@ -59,18 +42,20 @@ $article = new Article();
             </ol>
         </nav>
         <h4 class="mb-3"><?php echo $article->article_title ?></h4>
+        <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
+        <hr>
         <div id="content" class="mb-3"></div>
         <div class="mb-4">
-            <a class="btn btn-outline-primary btn-sm me-2" href="edit.php?id=<?php echo $article->article_info['id'] ?>">编辑</a>
+            <a class="btn btn-outline-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=<?php echo $article->article_info['id'] ?>">编辑</a>
             <button class="btn btn-outline-success btn-sm me-2">复制</button>
-            <a class="btn btn-outline-danger btn-sm" href="delete.php?id=<?php echo $article->article_info['id'] ?>">删除</a>
+            <a class="btn btn-outline-danger btn-sm" href="delete_article.php?book_id=<?php echo $article->book_info['id'] ?>&article_id=<?php echo $article->article_info['id'] ?>">删除</a>
         </div>
     </div>
     <script>
         <?php
         function parse_print($text)
         {
-            $text = htmlentities($text);
+            // $text = htmlentities($text);
             return json_encode(['text' => $text]);
         }
         ?>
