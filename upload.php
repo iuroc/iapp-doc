@@ -11,12 +11,12 @@ class Upload extends Public_fun
      * 手册文件
      */
     public array $file;
-    
+
     /**
      * 访问类型
      */
     public string $action;
-    
+
     /**
      * 手册内容
      */
@@ -61,7 +61,7 @@ class Upload extends Public_fun
         $this->create_book();
         $this->create_article();
     }
-    
+
     /**
      * 创建手册
      */
@@ -82,10 +82,17 @@ class Upload extends Public_fun
         for ($x = 1; $x < count($list); $x++) {
             $item = explode('】', $list[$x]);
             $title = addslashes($item[0]);
-            $content = addslashes($item[1]);
+            $content = $this->parseContent($item[1]);
             $sql = "INSERT INTO `$table` (`title`, `content`, `book_id`) VALUES ('$title', '$content', '$book_id');";
             mysqli_query(Init::$conn, $sql);
         }
+    }
+    public function parseContent(string $content): string
+    {
+        $content = str_replace('&left;', '【', $content);
+        $content = str_replace('&right;', '】', $content);
+        $content = addslashes($content);
+        return $content;
     }
     /**
      * 获取最新一条手册记录的 ID 值

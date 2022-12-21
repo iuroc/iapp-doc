@@ -26,12 +26,13 @@ $article = new Article();
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
     <meta name="description" content="<?php echo htmlentities($article->article_title) ?> <?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?> | <?php echo $article->book_info['title'] ?>">
     <meta name="keywords" content="<?php echo htmlentities($article->article_title) ?>, <?php echo $article->book_info['title'] ?>">
-    <link rel="stylesheet" href="css/prism.css">
+    <link rel="stylesheet" href="css/prism-default.css">
     <style>
         pre[class*=language-] {
             cursor: text;
             outline: none;
-            border-radius: 10px;
+            border-radius: 5px;
+            margin-bottom: 1rem !important;
         }
 
         pre[class*=language-] code {
@@ -45,6 +46,11 @@ $article = new Article();
         .token.operator,
         .token.url {
             background: none;
+        }
+
+        blockquote {
+            border-left: .25em solid #d0d7de;
+            padding-left: 10px;
         }
     </style>
     <script>
@@ -71,7 +77,6 @@ $article = new Article();
             echo '
         <div class="mb-4">
             <a class="btn btn-outline-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=' . $article->article_info['id'] . '">编辑</a>
-            <button class="btn btn-outline-success btn-sm me-2">复制</button>
             <a class="btn btn-outline-danger btn-sm" onclick="delete_article(' . $article->book_info['id'] . ', ' . $article->article_info['id'] . ')">删除</a>
         </div>
         <script>
@@ -89,7 +94,6 @@ $article = new Article();
         <?php
         function parse_print($text)
         {
-            // $text = htmlentities($text);
             return json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
         }
         ?>
@@ -98,15 +102,14 @@ $article = new Article();
     </script>
     <script src="js/prism.js"></script>
     <script>
-        setTimeout(() => {
-            let codeEles = document.querySelectorAll('pre[class*=language-] code')
-            if (codeEles) {
-                codeEles.forEach(ele => {
-                    ele.contentEditable = true
-                })
-            }
-
-        }, 100);
+        // 手动触发
+        Prism.highlightAll()
+        let codeEles = document.querySelectorAll('pre code')
+        if (codeEles) {
+            codeEles.forEach(ele => {
+                ele.contentEditable = true
+            })
+        }
     </script>
     <?php require('./footer.php') ?>
 </body>

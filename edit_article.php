@@ -112,7 +112,14 @@ $edit_article = new Edit_article();
 <body>
     <?php require('./nav.php') ?>
     <div class="container">
-        <form method="POST">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo $edit_article->mode_edit ? './article.php?article_id=' . $edit_article->article_id : './book.php?book_id=' . $edit_article->book_id ?>" class="text-decoration-none"><?php echo $edit_article->mode_edit ? '返回文章' : '返回手册' ?></a></li>
+                <li class="breadcrumb-item active"><?php echo $edit_article->status_text ?>文章</li>
+            </ol>
+        </nav>
+        <form method="POST" id="form">
             <div class="h4 mb-3"><?php echo $edit_article->status_text ?>文章</div>
             <div class="mb-3">
                 <label for="articleTitle" class="form-label">文章标题（250字以内）</label>
@@ -120,17 +127,55 @@ $edit_article = new Edit_article();
             </div>
             <div class="mb-3">
                 <label for="articleContent" class="form-label">文章内容（Markdown 格式）</label>
-                <textarea class="form-control" name="content" rows="15" id="articleContent" placeholder="" required><?php echo $edit_article->mode_edit ? $edit_article->article_info['content'] : '' ?></textarea>
+                <div id="editor" style="height: 500px;" class="border shadow-sm border rounded"></div>
             </div>
             <input type="hidden" name="submit" value="1">
-            <button class="btn btn-success mb-3">提交修改</button>
+            <input type="hidden" name="content" id="articleContent">
+            <input type="submit" id="submit" style="display: none;">
         </form>
+        <button class="btn btn-success mb-3" id="submitChange" onclick="submitChange()">提交修改</button>
     </div>
     <script>
-        let contentEle = document.getElementById('articleContent')
-        contentEle.placeholder = '请输入文章内容\n文档严格遵循 Markdown 语法'
+        // Ctrl + S 保存
+        window.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.keyCode == 83) {
+                event.preventDefault()
+                document.getElementById('submitChange').click()
+            }
+        })
     </script>
     <?php require('./footer.php') ?>
+    <script src="https://cdn.staticfile.org/ace/1.14.0/ace.min.js"></script>
+    <script src="https://cdn.staticfile.org/ace/1.14.0/mode-markdown.min.js"></script>
+    <script src="https://cdn.staticfile.org/ace/1.14.0/snippets/markdown.min.js"></script>
+    <script src="https://cdn.staticfile.org/ace/1.14.0/theme-tomorrow.js"></script>
+    <script>
+        <?php
+        function parse_print($text)
+        {
+            return json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
+        }
+        ?>
+        let data = <?php echo $edit_article->mode_edit ? parse_print($edit_article->article_info['content']) : 'null' ?>;
+        var editor = ace.edit('editor')
+        editor.setTheme("ace/theme/tomorrow");
+        editor.setFontSize(20)
+        const mdMode = ace.require("ace/mode/markdown").Mode;
+        editor.session.setMode(new mdMode())
+        if (data) {
+            editor.setValue(data.text)
+        }
+        editor.gotoLine(1)
+        editor.setShowPrintMargin(false)
+        let ContentEle = document.getElementById('articleContent')
+        let formEle = document.getElementById('form')
+        let submitEle = document.getElementById('submit')
+
+        function submitChange() {
+            ContentEle.value = editor.getValue()
+            submitEle.click()
+        }
+    </script>
 </body>
 
 </html>
