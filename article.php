@@ -22,7 +22,7 @@ $article = new Article();
 
 <head>
     <?php require('./head.php') ?>
-    <title><?php echo $article->article_title ?> - iApp 手册网</title>
+    <title><?php echo $article->article_title ?> - <?php echo $article->book_info['title'] ?> - iApp 手册网</title>
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
     <meta name="description" content="<?php echo htmlentities($article->article_title) ?> <?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?> | <?php echo $article->book_info['title'] ?>">
     <meta name="keywords" content="<?php echo htmlentities($article->article_title) ?>, <?php echo $article->book_info['title'] ?>">
@@ -83,6 +83,15 @@ $article = new Article();
         if (codeEles) {
             codeEles.forEach(ele => {
                 ele.contentEditable = true
+            })
+        }
+        let tableEles = document.querySelectorAll('#content table')
+        if (tableEles) {
+            tableEles.forEach(ele => {
+                ele.classList.add('table')
+                ele.classList.add('table-bordered')
+                ele.style.width = 'auto'
+                ele.style.maxWidth = '100%'
             })
         }
     </script>

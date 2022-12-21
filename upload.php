@@ -81,6 +81,9 @@ class Upload extends Public_fun
         $table = Config::$table['article'];
         for ($x = 1; $x < count($list); $x++) {
             $item = explode('】', $list[$x]);
+            if (count($item) != 2) {
+                continue;
+            }
             $title = addslashes($item[0]);
             $content = $this->parseContent($item[1]);
             $sql = "INSERT INTO `$table` (`title`, `content`, `book_id`) VALUES ('$title', '$content', '$book_id');";

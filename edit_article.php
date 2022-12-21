@@ -126,7 +126,7 @@ $edit_article = new Edit_article();
                 <input type="text" class="form-control" name="title" id="articleTitle" placeholder="请输入文章标题" value="<?php echo $edit_article->mode_edit ? $edit_article->article_title : '' ?>" required>
             </div>
             <div class="mb-3">
-                <label for="articleContent" class="form-label">文章内容（Markdown 格式）</label>
+                <label class="form-label">文章内容（Markdown 格式）</label>
                 <div id="editor" style="height: 500px;" class="border shadow-sm border rounded"></div>
             </div>
             <input type="hidden" name="submit" value="1">
@@ -167,6 +167,8 @@ $edit_article = new Edit_article();
         }
         editor.gotoLine(1)
         editor.setShowPrintMargin(false)
+        editor.session.setUseWrapMode(true)
+        editor.session.setTabSize(2)
         let ContentEle = document.getElementById('articleContent')
         let formEle = document.getElementById('form')
         let submitEle = document.getElementById('submit')
