@@ -111,7 +111,10 @@ class Upload extends Public_fun
     public function read_file()
     {
         $file_path = 'book_' . str_shuffle(time()) . '.txt';
-        move_uploaded_file($this->file['tmp_name'], $file_path);
+        $move = move_uploaded_file($this->file['tmp_name'], $file_path);
+        if (!$move) {
+            die('上传失败，请检查是否开启写入权限');
+        }
         $text = file_get_contents($file_path);
         unlink($file_path);
         $this->text = $text;
