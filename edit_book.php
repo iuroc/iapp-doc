@@ -9,14 +9,17 @@ class Edit_book extends Public_fun
 {
     public function __construct()
     {
-        $this->action = $_POST['action'] ?? '';
-        $this->get_book_id();
-        if ($this->action == 'edit') {
-            $this->edit();
-            header('location:./book.php?book_id=' . $this->book_id);
-            die();
+        $action = $_GET['action'] ?? '';
+        $submit = $_POST['submit'] ?? '';
+        if ($action == 'edit') {
+            $this->get_book_id();
+            $this->get_book_info();
+            if ($submit) {
+                $this->edit();
+                header('location:./book.php?book_id=' . $this->book_id);
+                die();
+            }
         }
-        $this->get_book_info();
     }
     public function edit()
     {
@@ -65,7 +68,7 @@ $edit_book = new Edit_book();
                         <label for="bookIntro" class="form-label">手册介绍（500 字以内）</label>
                         <textarea class="form-control" name="intro" rows="5" id="bookIntro" placeholder="这是一本神奇的手册..." required><?php echo $edit_book->book_info['intro'] ?></textarea>
                     </div>
-                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" name="submit" value="1">
                     <button class="btn btn-success mb-3">提交修改</button>
                 </form>
             </div>

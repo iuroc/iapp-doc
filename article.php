@@ -27,32 +27,7 @@ $article = new Article();
     <meta name="description" content="<?php echo htmlentities($article->article_title) ?> <?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?> | <?php echo $article->book_info['title'] ?>">
     <meta name="keywords" content="<?php echo htmlentities($article->article_title) ?>, <?php echo $article->book_info['title'] ?>">
     <link rel="stylesheet" href="css/prism-default.css">
-    <style>
-        pre[class*=language-] {
-            cursor: text;
-            outline: none;
-            border-radius: 5px;
-            margin-bottom: 1rem !important;
-        }
-
-        pre[class*=language-] code {
-            outline: none;
-            display: block;
-        }
-
-        .language-css .token.string,
-        .style .token.string,
-        .token.entity,
-        .token.operator,
-        .token.url {
-            background: none;
-        }
-
-        blockquote {
-            border-left: .25em solid #d0d7de;
-            padding-left: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/article.css">
     <script>
         const PAGE_NAME = 'book' // 页面标识
     </script>
@@ -61,14 +36,14 @@ $article = new Article();
 <body>
     <?php require('./nav.php') ?>
     <div class="container">
-        <nav>
+        <nav class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
                 <li class="breadcrumb-item"><a href="./book.php?book_id=<?php echo $article->book_info['id'] ?>" class="text-decoration-none"><?php echo $article->book_info['title'] ?></a></li>
                 <li class="breadcrumb-item active"><?php echo $article->article_title ?></li>
             </ol>
         </nav>
-        <h4 class="mb-3"><?php echo $article->article_title ?></h4>
+        <div class="h2 mb-3 fw-bold"><?php echo $article->article_title ?></div>
         <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
         <hr>
         <div id="content" class="mb-3"></div>

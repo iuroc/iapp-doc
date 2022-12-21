@@ -17,7 +17,7 @@ class Index
     public function get_book_list()
     {
         $table = Config::$table['book'];
-        $sql = "SELECT * FROM `$table`";
+        $sql = "SELECT * FROM `$table` ORDER BY UNIX_TIMESTAMP(`update_time`) DESC";
         $result = mysqli_query(Init::$conn, $sql);
         $list = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $this->book_list = $list;

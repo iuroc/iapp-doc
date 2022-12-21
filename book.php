@@ -22,7 +22,7 @@ class Book extends Public_fun
     public function get_article_list()
     {
         $table = Config::$table['article'];
-        $sql = "SELECT * FROM `$table` WHERE `book_id` = {$this->book_id};";
+        $sql = "SELECT * FROM `$table` WHERE `book_id` = {$this->book_id} ORDER BY UNIX_TIMESTAMP(`update_time`) DESC;";
         $result = mysqli_query(Init::$conn, $sql);
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $this->article_list = $data;
@@ -69,7 +69,7 @@ $book = new Book();
         if ($book->has_login) {
             echo '
         <div class="pb-3 sticky-bottom">
-            <a class="btn btn-sm btn-primary me-2" href="edit_book.php?book_id=' . $book->book_info['id'] . '">编辑手册</a>
+            <a class="btn btn-sm btn-primary me-2" href="edit_book.php?action=edit&book_id=' . $book->book_info['id'] . '">编辑手册</a>
             <a class="btn btn-sm btn-success me-2" href="edit_article.php?action=add&book_id=' . $book->book_info['id'] . '">新增文章</a>
             <button class="btn btn-sm btn-danger" onclick="delete_book(' . $book->book_info['id'] . ')">删除手册</button>
         </div>

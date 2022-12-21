@@ -1,0 +1,34 @@
+pre[class*=language-] {
+    cursor: text;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 1rem !important;
+}
+
+pre[class*=language-] code {
+    outline: none;
+    display: block;
+}
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.operator,
+.token.url {
+    background: none;
+}
+
+blockquote {
+    border-left: .25em solid #d0d7de;
+    padding-left: 10px;
+}
+
+
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
+    margin-bottom: 1rem;
+}
