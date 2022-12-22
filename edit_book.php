@@ -47,7 +47,7 @@ $edit_book = new Edit_book();
 
 <head>
     <?php require('./head.php') ?>
-    <title>编辑手册信息 - iApp 手册网</title>
+    <title>编辑手册信息 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'edit_book' // 页面标识
     </script>

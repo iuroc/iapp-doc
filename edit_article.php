@@ -103,7 +103,7 @@ $edit_article = new Edit_article();
 
 <head>
     <?php require('./head.php') ?>
-    <title><?php echo $edit_article->status_text ?>文章 - iApp 手册网</title>
+    <title><?php echo $edit_article->status_text ?>文章 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'edit_book' // 页面标识
     </script>

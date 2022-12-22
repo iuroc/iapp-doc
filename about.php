@@ -1,5 +1,6 @@
 <?php
-
+require('./config.php');
+require('./init.php');
 /**
  * 上传手册
  */
@@ -10,7 +11,7 @@
 
 <head>
     <?php include './head.php' ?>
-    <title>关于</title>
+    <title>关于 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'about' // 页面标识
     </script>

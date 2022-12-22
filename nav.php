@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md bg-light shadow-sm sticky-top mb-4">
     <div class="container-md">
-        <a class="navbar-brand" href="./">iApp 手册网</a>
+        <a class="navbar-brand" href="./"><?php echo Config::$site_title ?></a>
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>

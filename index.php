@@ -30,7 +30,7 @@ $index = new Index();
 
 <head>
     <?php require('./head.php') ?>
-    <title>iApp 手册网</title>
+    <title><?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'home' // 页面标识
     </script>

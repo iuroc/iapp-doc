@@ -35,7 +35,7 @@ $book = new Book();
 
 <head>
     <?php require('./head.php') ?>
-    <title><?php echo strip_tags($book->book_title) ?> - iApp 手册网</title>
+    <title><?php echo strip_tags($book->book_title) ?> - <?php echo Config::$site_title ?></title>
     <meta name="description" content="<?php echo $book->parse_value($book->book_title) ?> <?php echo str_replace("\n", '', $book->parse_value($book->book_info['intro'])) ?>">
     <script>
         const PAGE_NAME = 'book' // 页面标识
