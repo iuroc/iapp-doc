@@ -47,7 +47,7 @@ function parse_content($text)
     <div class="container">
         <nav class="mb-4">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo Config::$site_path ?>/" class="text-decoration-none">主页</a></li>
+                <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
                 <?php
                 $book_url = Config::$site_path . '/book.php?book_id=' . $article->book_info['id'];
                 $book_url_static = Config::$site_path . '/book_' . $article->book_info['id'] . '.html';
@@ -64,9 +64,9 @@ function parse_content($text)
         <?php
         if ($article->has_login) {
             echo '
-        <div class="mb-4">
-            <a class="btn btn-outline-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=' . $article->article_info['id'] . '">编辑</a>
-            <a class="btn btn-outline-danger btn-sm" onclick="delete_article(' . $article->book_info['id'] . ', ' . $article->article_info['id'] . ')">删除</a>
+        <div class="pb-3 sticky-bottom">
+            <a class="btn btn-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=' . $article->article_info['id'] . '">编辑文章</a>
+            <a class="btn btn-danger btn-sm" onclick="delete_article(' . $article->book_info['id'] . ', ' . $article->article_info['id'] . ')">删除文章</a>
         </div>
         <script>
             function delete_article(id) {

@@ -20,6 +20,10 @@ require('./init.php');
 <body>
     <?php include './nav.php' ?>
     <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
+            <li class="breadcrumb-item active">关于</li>
+        </ol>
         <div class="h3 mb-3">关于</div>
         <ul>
             <li class="mb-1">Github：<a href="https://github.com/oyps/iapp-doc" target="_blank">https://github.com/oyps/iapp-doc</a></li>

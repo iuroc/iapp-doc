@@ -116,7 +116,7 @@ $edit_article = new Edit_article();
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
-                <li class="breadcrumb-item"><a href="<?php echo $edit_article->mode_edit ? './article.php?article_id=' . $edit_article->article_id : './book.php?book_id=' . $edit_article->book_id ?>" class="text-decoration-none"><?php echo $edit_article->mode_edit ? '返回文章' : '返回手册' ?></a></li>
+                <li class="breadcrumb-item"><a href=".<?php echo $edit_article->mode_edit ? '/article.php?article_id=' . $edit_article->article_id : '/book.php?book_id=' . $edit_article->book_id ?>" class="text-decoration-none"><?php echo $edit_article->mode_edit ? '返回文章' : '返回手册' ?></a></li>
                 <li class="breadcrumb-item active"><?php echo $edit_article->status_text ?>文章</li>
             </ol>
         </nav>
