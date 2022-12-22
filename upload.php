@@ -79,6 +79,9 @@ class Upload extends Public_fun
         $list = explode('【', $this->text);
         $book_id = $this->get_new_book_id();
         $table = Config::$table['article'];
+        // 获取日期时间，这里不使用数据库的 CURRENT_TIMESTAMP 是为了保证所有文章上传时的时间的一致
+        ini_set('date.timezone', 'Asia/Shanghai');
+        $datetime = date("Y-m-d H:i:s");
         for ($x = 1; $x < count($list); $x++) {
             $item = explode('】', $list[$x]);
             if (count($item) != 2) {
@@ -86,7 +89,7 @@ class Upload extends Public_fun
             }
             $title = addslashes($item[0]);
             $content = $this->parseContent($item[1]);
-            $sql = "INSERT INTO `$table` (`title`, `content`, `book_id`) VALUES ('$title', '$content', '$book_id');";
+            $sql = "INSERT INTO `$table` (`title`, `content`, `book_id`, `update_time`) VALUES ('$title', '$content', '$book_id', '$datetime');";
             mysqli_query(Init::$conn, $sql);
         }
     }

@@ -22,10 +22,11 @@ $article = new Article();
 
 <head>
     <?php require('./head.php') ?>
-    <title><?php echo $article->article_title ?> - <?php echo $article->book_info['title'] ?> - iApp 手册网</title>
+    <title><?php echo strip_tags($article->article_title) ?> - <?php echo strip_tags($article->book_info['title']) ?> - iApp 手册网</title>
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
-    <meta name="description" content="<?php echo htmlentities($article->article_title) ?> <?php echo str_replace("\n", '', htmlentities(mb_substr($article->article_info['content'], 0, 200))) ?> | <?php echo $article->book_info['title'] ?>">
-    <meta name="keywords" content="<?php echo htmlentities($article->article_title) ?>, <?php echo $article->book_info['title'] ?>">
+    <?php $sub_content = str_replace("\n", '', strip_tags(mb_substr($article->article_info['content'], 0, 200))) ?>
+    <meta name="description" content="<?php echo strip_tags($article->article_title) ?> <?php echo strip_tags($sub_content) ?> | <?php echo strip_tags($article->book_info['title']) ?>">
+    <meta name="keywords" content="<?php echo strip_tags($article->article_title) ?>, <?php echo strip_tags($article->book_info['title']) ?>">
     <link rel="stylesheet" href="css/prism-default.css">
     <link rel="stylesheet" href="css/article.css">
     <script>
@@ -39,8 +40,8 @@ $article = new Article();
         <nav class="mb-4">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
-                <li class="breadcrumb-item"><a href="./book.php?book_id=<?php echo $article->book_info['id'] ?>" class="text-decoration-none"><?php echo $article->book_info['title'] ?></a></li>
-                <li class="breadcrumb-item active"><?php echo $article->article_title ?></li>
+                <li class="breadcrumb-item"><a href="./book.php?book_id=<?php echo $article->book_info['id'] ?>" class="text-decoration-none"><?php echo strip_tags($article->book_info['title']) ?></a></li>
+                <li class="breadcrumb-item active"><?php echo strip_tags($article->article_title) ?></li>
             </ol>
         </nav>
         <div class="h2 mb-3 fw-bold"><?php echo $article->article_title ?></div>
