@@ -47,8 +47,13 @@ function parse_content($text)
     <div class="container">
         <nav class="mb-4">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
-                <li class="breadcrumb-item"><a href="./book.php?book_id=<?php echo $article->book_info['id'] ?>" class="text-decoration-none"><?php echo strip_tags($article->book_info['title']) ?></a></li>
+                <li class="breadcrumb-item"><a href="<?php echo Config::$site_path ?>/" class="text-decoration-none">主页</a></li>
+                <?php
+                $book_url = Config::$site_path . '/book.php?book_id=' . $article->book_info['id'];
+                $book_url_static = Config::$site_path . '/book_' . $article->book_info['id'] . '.html';
+                $url = Config::$url_static ? $book_url_static : $book_url;
+                ?>
+                <li class="breadcrumb-item"><a href="<?php echo $url ?>" class="text-decoration-none"><?php echo strip_tags($article->book_info['title']) ?></a></li>
                 <li class="breadcrumb-item active"><?php echo strip_tags($article->article_title) ?></li>
             </ol>
         </nav>

@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteBase /iapp-doc
+RewriteRule ^book_(\d+).html$ book.php?book_id=$1
+RewriteRule ^article_(\d+).html$ article.php?article_id=$1
+RewriteRule ^(.*).html$ $1.php

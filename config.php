@@ -42,9 +42,9 @@ class Config
      * 
      * 如果是三级目录，则为 `/path/path2`
      */
-    public static string $site_path = '';
+    public static string $site_path = '/iapp-doc';
     /**
      * 是否开启伪静态
      */
-    public static bool $url_static = false;
+    public static bool $url_static = true;
 }
