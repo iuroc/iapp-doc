@@ -8,6 +8,9 @@ pre[class*=language-] {
 pre[class*=language-] code {
     outline: none;
     display: block;
+    /* 代码自动换行 */
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .language-css .token.string,
