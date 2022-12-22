@@ -33,4 +33,18 @@ class Config
      * 网站名称
      */
     public static string $site_title = 'iApp 手册网';
+    /**
+     * 网站部署路径
+     * 
+     * 如果是根目录，则留空
+     * 
+     * 如果是二级目录，则为 `/path`
+     * 
+     * 如果是三级目录，则为 `/path/path2`
+     */
+    public static string $site_path = '';
+    /**
+     * 是否开启伪静态
+     */
+    public static bool $url_static = false;
 }

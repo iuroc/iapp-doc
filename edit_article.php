@@ -149,7 +149,6 @@ $edit_article = new Edit_article();
     <script src="https://cdn.staticfile.org/ace/1.14.0/ace.min.js"></script>
     <script src="https://cdn.staticfile.org/ace/1.14.0/mode-markdown.min.js"></script>
     <script src="https://cdn.staticfile.org/ace/1.14.0/snippets/markdown.min.js"></script>
-    <script src="https://cdn.staticfile.org/ace/1.14.0/theme-tomorrow.js"></script>
     <script>
         <?php
         function parse_print($text)
@@ -158,6 +157,7 @@ $edit_article = new Edit_article();
         }
         ?>
         let data = <?php echo $edit_article->mode_edit ? parse_print($edit_article->article_info['content']) : 'null' ?>;
+        ace.config.set('basePath', 'https://cdn.staticfile.org/ace/1.14.0/')
         var editor = ace.edit('editor')
         editor.setTheme("ace/theme/tomorrow");
         editor.setFontSize(20)
@@ -170,6 +170,11 @@ $edit_article = new Edit_article();
         editor.setShowPrintMargin(false)
         editor.session.setUseWrapMode(true)
         editor.session.setTabSize(2)
+        editor.setOptions({
+            enableBasicAutocompletion: true, //
+            enableSnippets: true, //
+            enableLiveAutocompletion: true, // 补全
+        })
         let ContentEle = document.getElementById('articleContent')
         let formEle = document.getElementById('form')
         let submitEle = document.getElementById('submit')
