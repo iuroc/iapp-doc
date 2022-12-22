@@ -40,13 +40,13 @@
 
 ## 路由规划
 
-| 伪静态后URL      | 原URL                                | 描述       |
-| ---------------- | ------------------------------------ | ---------- |
-| /                | /                                    | 主页       |
-| /book/3          | /book.php?book_id=3                  | 某手册主页 |
-| /article/123     | /article.php?article_id=123          | 某文章页面 |
-| /search/all/1234 | /search.php?book_id=all&keyword=1234 | 搜索       |
-| /control/upload  | /control/upload.php                  | 上传手册   |
+| 伪静态后URL           | 原URL                                | 描述       |
+| --------------------- | ------------------------------------ | ---------- |
+| /                     | /                                    | 主页       |
+| /book/3.html          | /book.php?book_id=3                  | 某手册主页 |
+| /article/123.html     | /article.php?article_id=123          | 某文章页面 |
+| /search/all/1234.html | /search.php?book_id=all&keyword=1234 | 搜索       |
+| /control/upload       | /control/upload.php                  | 上传手册   |
 
 ## 待优化
 

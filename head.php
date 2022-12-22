@@ -18,6 +18,21 @@
     .text-justify {
         text-align: justify;
     }
+
+    *::selection {
+        background: rgba(255, 71, 71, 0.3);
+        color: inherit;
+    }
+
+    *::-moz-selection {
+        background: rgba(255, 71, 71, 0.3);
+        color: inherit;
+    }
+
+    *::-webkit-selection {
+        background: rgba(255, 71, 71, 0.3);
+        color: inherit;
+    }
 </style>
 <script>
     window.onload = function() {
