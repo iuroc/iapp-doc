@@ -9,13 +9,8 @@ class Delete_book extends Public_fun
 {
     public function __construct()
     {
+        $this->must_login();
         $this->get_book_id();
-        // 验证管理员密码
-        $password = $_COOKIE['password'] ?? '';
-        if ($password != Config::$admin['password']) {
-            header('location: ./login.php');
-            die();
-        }
         $this->delete_article();
         $this->delete_book();
         header('location:./');

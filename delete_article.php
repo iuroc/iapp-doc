@@ -9,15 +9,10 @@ class Delete_article extends Public_fun
 {
     public function __construct()
     {
+        $this->must_login();
         $this->get_article_id();
         // 获取手册ID，用于删除文章后返回手册页面
         $this->get_book_id();
-        // 验证管理员密码
-        $password = $_COOKIE['password'] ?? '';
-        if ($password != Config::$admin['password']) {
-            header('location: ./login.php');
-            die();
-        }
         $this->delete_article();
         header('location:./book.php?book_id=' . $this->book_id);
     }

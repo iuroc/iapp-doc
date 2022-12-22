@@ -9,6 +9,7 @@ class Edit_book extends Public_fun
 {
     public function __construct()
     {
+        $this->must_login();
         $action = $_GET['action'] ?? '';
         $submit = $_POST['submit'] ?? '';
         if ($action == 'edit') {
@@ -23,12 +24,6 @@ class Edit_book extends Public_fun
     }
     public function edit()
     {
-        // 验证管理员密码
-        $password = $_COOKIE['password'] ?? '';
-        if ($password != Config::$admin['password']) {
-            header('location: ./login.php');
-            die();
-        }
         $this->get_title();
         $this->get_intro();
         $this->update();

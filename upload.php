@@ -27,6 +27,7 @@ class Upload extends Public_fun
     public const PATH = '/upload.php';
     public function __construct()
     {
+        $this->must_login();
         $this->action = $_POST['action'] ?? '';
         if ($this->action == 'submit') {
             $this->submit();
@@ -39,12 +40,6 @@ class Upload extends Public_fun
      */
     public function submit()
     {
-        // 验证管理员密码
-        $password = $_COOKIE['password'] ?? '';
-        if ($password != Config::$admin['password']) {
-            header('location: ./login.php');
-            die();
-        }
         // 获取文件数据
         $this->file = $_FILES['file'] ?? null;
         if (!$this->file || $this->file['error'] > 0) {

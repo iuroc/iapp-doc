@@ -23,6 +23,7 @@ class Edit_article extends Public_fun
     public string $status_text;
     public function __construct()
     {
+        $this->must_login();
         $action = $_GET['action'] ?? '';
         $submit = $_POST['submit'] ?? '';
         if ($action == 'edit') {

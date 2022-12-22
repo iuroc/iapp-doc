@@ -157,4 +157,15 @@ class Public_fun
     {
         return htmlspecialchars(strip_tags($text));
     }
+    /**
+     * 要求必须登录，否则跳转登录页面
+     */
+    public function must_login()
+    {
+        $this->if_has_login();
+        if (!$this->has_login) {
+            header('location: ./login.php');
+            die();
+        }
+    }
 }
