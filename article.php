@@ -16,17 +16,25 @@ class Article extends Public_fun
     }
 }
 $article = new Article();
+function parse_content($text)
+{
+    $text = str_replace("\n", '', htmlspecialchars(strip_tags(mb_substr($text, 0, 200))));
+    // 隐藏 Markdown 字符
+    $text = preg_replace('/[#[\]!<>*`-]/', '', $text);
+    return $text;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
     <?php require('./head.php') ?>
-    <title><?php echo strip_tags($article->article_title) ?> - <?php echo strip_tags($article->book_info['title']) ?> - iApp 手册网</title>
+    <title><?php echo $article->parse_value($article->article_title) ?> - <?php echo $article->parse_value($article->book_info['title']) ?> - iApp 手册网</title>
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
-    <?php $sub_content = str_replace("\n", '', strip_tags(mb_substr($article->article_info['content'], 0, 200))) ?>
-    <meta name="description" content="<?php echo strip_tags($article->article_title) ?> <?php echo strip_tags($sub_content) ?> | <?php echo strip_tags($article->book_info['title']) ?>">
-    <meta name="keywords" content="<?php echo strip_tags($article->article_title) ?>, <?php echo strip_tags($article->book_info['title']) ?>">
+    <?php $sub_content = parse_content($article->article_info['content']) ?>
+    <meta name="description" content="<?php echo $article->parse_value($article->article_title) ?> <?php echo $sub_content ?> | <?php echo $article->parse_value($article->book_info['title']) ?>">
+    <meta name="keywords" content="<?php echo $article->parse_value($article->article_title) ?>, <?php echo $article->parse_value($article->book_info['title']) ?>">
     <link rel="stylesheet" href="css/prism-default.css">
     <link rel="stylesheet" href="css/article.css">
     <script>

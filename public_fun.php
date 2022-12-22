@@ -150,4 +150,11 @@ class Public_fun
         $this->book_id = $article_info['book_id'];
         $this->article_title = $article_info['title'];
     }
+    /**
+     * 执行 `htmlspecialchars(strip_tags())`
+     */
+    function parse_value($text)
+    {
+        return htmlspecialchars(strip_tags($text));
+    }
 }
