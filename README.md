@@ -7,6 +7,7 @@
 - 作者：欧阳鹏
 - 开发日期：2022年12月19日
 - 官网：https://apee.top
+- 站点地址：http://iapp.apee.top
 - 关键词：PHP、Bootstrap、伪静态、Cookie、文件上传、Markdown
 
 ## 功能规划
