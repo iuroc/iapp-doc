@@ -33,6 +33,10 @@
         background: rgba(255, 71, 71, 0.3);
         color: inherit;
     }
+
+    a {
+        text-decoration: none;
+    }
 </style>
 <script>
     window.onload = function() {

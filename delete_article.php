@@ -14,7 +14,7 @@ class Delete_article extends Public_fun
         // 获取手册ID，用于删除文章后返回手册页面
         $this->get_book_id();
         $this->delete_article();
-        header('location:./book.php?book_id=' . $this->book_id);
+        header('location:' . $this->get_book_url());
     }
     /**
      * 删除文章数据（必须先删除文章，再删除手册信息）

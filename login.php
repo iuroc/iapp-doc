@@ -44,7 +44,7 @@ $login = new Login();
     <div class="container">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
+                <li class="breadcrumb-item"><a href="./">主页</a></li>
                 <li class="breadcrumb-item active">管理员</li>
             </ol>
         </nav>

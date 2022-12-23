@@ -21,7 +21,7 @@ require('./include/init.php');
     <?php include './include/nav.php' ?>
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
+            <li class="breadcrumb-item"><a href="./">主页</a></li>
             <li class="breadcrumb-item active">关于</li>
         </ol>
         <div class="h3 mb-3">关于</div>
@@ -29,9 +29,9 @@ require('./include/init.php');
         <p>iApp 是一代程序员的青春，我们缅怀，也在不断前行。</p>
         <p>本站长期收集优质教程文档，欢迎您通过下方的邮箱向本站投稿。</p>
         <ul class="mb-4">
-            <li class="mb-1">投稿、反馈邮箱：<a href="mailto:m@apee.top" class="text-decoration-none">m@apee.top</a></li>
-            <li class="mb-1">站长的 Github：<a href="https://github.com/oyps" class="text-decoration-none" target="_blank">欧阳鹏（oyps）</a></li>
-            <li class="mb-1">站长的工作室：<a href="https://apee.top" class="text-decoration-none" target="_blank">https://apee.top</a></li>
+            <li class="mb-1">投稿、反馈邮箱：<a href="mailto:m@apee.top">m@apee.top</a></li>
+            <li class="mb-1">站长的 Github：<a href="https://github.com/oyps" target="_blank">欧阳鹏（oyps）</a></li>
+            <li class="mb-1">站长的工作室：<a href="https://apee.top" target="_blank">https://apee.top</a></li>
         </ul>
     </div>
     <?php require('./include/footer.php') ?>

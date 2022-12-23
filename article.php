@@ -33,7 +33,8 @@ class Article extends Public_fun
     {
         $table = Config::$table['article'];
         $s = $is_last ? '<' : '>';
-        $sql = "SELECT * FROM `$table` WHERE `id` $s {$this->article_id} AND `book_id` = '{$this->book_id}' LIMIT 1;";
+        $order = $is_last ? 'ORDER BY `id` DESC' : '';
+        $sql = "SELECT * FROM `$table` WHERE `id` $s {$this->article_id} AND `book_id` = '{$this->book_id}' $order LIMIT 1;";
         $result = mysqli_query(Init::$conn, $sql);
         if (mysqli_num_rows($result) == 0) {
             return [];
@@ -74,14 +75,12 @@ function parse_content($text)
     <div class="container">
         <nav class="mb-4">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
-                <?php
-                $book_url = Config::$site_path . '/book.php?book_id=' . $article->book_info['id'];
-                $book_url_static = Config::$site_path . '/book_' . $article->book_info['id'] . '.html';
-                $url = Config::$url_static ? $book_url_static : $book_url;
-                $book_home_url = $url;
-                ?>
-                <li class="breadcrumb-item"><a href="<?php echo $url ?>" class="text-decoration-none"><?php echo strip_tags($article->book_info['title']) ?></a></li>
+                <li class="breadcrumb-item"><a href="./">主页</a></li>
+                <li class="breadcrumb-item">
+                    <a href="<?php echo $article->get_book_url() ?>">
+                        <?php echo strip_tags($article->book_info['title']) ?>
+                    </a>
+                </li>
                 <li class="breadcrumb-item active"><?php echo strip_tags($article->article_title) ?></li>
             </ol>
         </nav>
@@ -99,28 +98,24 @@ function parse_content($text)
             <div class="col-md-6">
                 <?php
                 if ($article->last_article) {
-                    $last_url = Config::$url_static ?
-                        'article_' . $article->last_article['id'] . '.html' :
-                        'article.php?article_id=' . $article->last_article['id'];
+                    $last_url = $article->get_article_url($article->last_article['id']);
                 } else {
-                    $last_url = $book_home_url;
+                    $last_url = $article->get_book_url();
                 }
                 ?>
-                <a class="card mb-3 card-body text-decoration-none" role="button" href="<?php echo $last_url ?>">
+                <a class="card mb-3 card-body" role="button" href="<?php echo $last_url ?>">
                     上一篇：<?php echo strip_tags($article->last_article['title'] ?? '没有更多了'); ?>
                 </a>
             </div>
             <div class="col-md-6">
                 <?php
                 if ($article->next_article) {
-                    $next_url = Config::$url_static ?
-                        'article_' . $article->next_article['id'] . '.html' :
-                        'article.php?article_id=' . $article->next_article['id'];
+                    $next_url = $article->get_article_url($article->next_article['id']);
                 } else {
-                    $next_url = $book_home_url;
+                    $next_url = $article->get_book_url();
                 }
                 ?>
-                <a class="card mb-3 card-body text-decoration-none" role="button" href="<?php echo $next_url ?>">
+                <a class="card mb-3 card-body" role="button" href="<?php echo $next_url ?>">
                     下一篇：<?php echo strip_tags($article->next_article['title'] ?? '没有更多了'); ?>
                 </a>
             </div>
@@ -128,7 +123,7 @@ function parse_content($text)
         <?php
         if ($article->has_login) {
             echo '
-        <div class="pb-3 sticky-bottom">
+        <div class="pb-3 mt-3 sticky-bottom">
             <a class="btn btn-primary btn-sm me-2" href="edit_article.php?action=edit&article_id=' . $article->article_info['id'] . '">编辑文章</a>
             <a class="btn btn-danger btn-sm" onclick="delete_article(' . $article->book_info['id'] . ', ' . $article->article_info['id'] . ')">删除文章</a>
         </div>

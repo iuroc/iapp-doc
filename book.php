@@ -22,7 +22,8 @@ class Book extends Public_fun
     public function get_article_list()
     {
         $table = Config::$table['article'];
-        $sql = "SELECT * FROM `$table` WHERE `book_id` = {$this->book_id} ORDER BY UNIX_TIMESTAMP(`update_time`) DESC, `id`;";
+        $sql = "SELECT * FROM `$table` WHERE `book_id` = {$this->book_id};";
+        // $sql = "SELECT * FROM `$table` WHERE `book_id` = {$this->book_id} ORDER BY UNIX_TIMESTAMP(`update_time`) DESC, `id`;";
         $result = mysqli_query(Init::$conn, $sql);
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $this->article_list = $data;
@@ -47,7 +48,7 @@ $book = new Book();
     <div class="container">
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
+                <li class="breadcrumb-item"><a href="./">主页</a></li>
                 <li class="breadcrumb-item active"><?php echo strip_tags($book->book_title) ?></li>
             </ol>
         </nav>
@@ -61,12 +62,15 @@ $book = new Book();
                 return $text;
             }
             foreach ($book->article_list as $article_info) {
-                $url = Config::$url_static ? ('article_' . $article_info['id'] . '.html') : ('article.php?article_id=' . $article_info['id']);
                 echo '
             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-3">
-                <a title="' . strip_tags($article_info['title']) . '" class="justify-content-between card card-body shadow-sm h-100 text-decoration-none" href="' . $url . '" role="button">
+                <a title="' . strip_tags($article_info['title']) . '"
+                    class="justify-content-between card card-body shadow-sm h-100"
+                    href="' . $book->get_article_url($article_info['id']) . '" role="button">
                     <div class="h5 text-truncate">' . $article_info['title'] . '</div>
-                    <div class="mb-2 limit-line-4 text-muted text-justify">' . parse_content($article_info['content']) . '</div>
+                    <div class="mb-2 limit-line-4 text-muted text-justify">
+                        ' . parse_content($article_info['content']) .
+                    '</div>
                     <div class="text-muted small">' . $article_info['update_time'] . ' 最后更新</div>
                 </a>
             </div>';
@@ -76,7 +80,7 @@ $book = new Book();
         <?php
         if ($book->has_login) {
             echo '
-        <div class="pb-3 sticky-bottom">
+        <div class="pb-3 mt-3 sticky-bottom">
             <a class="btn btn-sm btn-primary me-2" href="edit_book.php?action=edit&book_id=' . $book->book_info['id'] . '">编辑手册</a>
             <a class="btn btn-sm btn-success me-2" href="edit_article.php?action=add&book_id=' . $book->book_info['id'] . '">新增文章</a>
             <button class="btn btn-sm btn-danger" onclick="delete_book(' . $book->book_info['id'] . ')">删除手册</button>

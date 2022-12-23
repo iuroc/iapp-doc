@@ -200,4 +200,24 @@ class Public_fun
             die();
         }
     }
+    /**
+     * 获取手册URL，自动处理伪静态
+     */
+    public function get_book_url(int ...$book_id)
+    {
+        $book_id = $book_id ? $book_id[0] : $this->book_id;
+        $book_url = 'book.php?book_id=' . $book_id;
+        $book_url_static = 'book_' . $book_id . '.html';
+        return Config::$url_static ? $book_url_static : $book_url;
+    }
+    /**
+     * 获取文章URL，自动处理伪静态
+     */
+    public function get_article_url(int ...$article_id)
+    {
+        $article_id = $article_id ? $article_id[0] : $this->article_id;
+        $article_url = 'article.php?article_id=' . $article_id;
+        $article_url_static = 'article_' . $article_id . '.html';
+        return Config::$url_static ? $article_url_static : $article_url;
+    }
 }

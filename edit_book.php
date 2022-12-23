@@ -20,7 +20,7 @@ class Edit_book extends Public_fun
             $this->get_book_info();
             if ($submit) {
                 $this->edit();
-                header('location:./book.php?book_id=' . $this->book_id);
+                header('location:' . $this->get_book_url());
                 die();
             }
         } else {
@@ -32,7 +32,7 @@ class Edit_book extends Public_fun
                 $this->get_intro();
                 $this->create_book();
                 $this->book_id = $this->get_new_book_id();
-                header('location:./book.php?book_id=' . $this->book_id);
+                header('location:' . $this->get_book_url());
                 die();
             }
         }

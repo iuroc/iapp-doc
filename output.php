@@ -58,8 +58,8 @@ $output = new Output();
     <?php require('./include/nav.php') ?>
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
-            <li class="breadcrumb-item"><a href="./login.php" class="text-decoration-none">管理员</a></li>
+            <li class="breadcrumb-item"><a href="./">主页</a></li>
+            <li class="breadcrumb-item"><a href="./login.php">管理员</a></li>
             <li class="breadcrumb-item active">导出数据库</li>
         </ol>
         <?php
