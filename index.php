@@ -31,6 +31,8 @@ $index = new Index();
 <head>
     <?php require('./head.php') ?>
     <title><?php echo Config::$site_title ?></title>
+    <meta name="description" content="<?php echo Config::$site_title ?> 专注 iApp 优质教程、实例分享">
+    <meta name="keywords" content="iApp,鹏优创,代码,教程,安卓,手机,软件">
     <script>
         const PAGE_NAME = 'home' // 页面标识
     </script>
