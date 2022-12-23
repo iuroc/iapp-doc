@@ -58,9 +58,12 @@ rewrite ^/sitemap.txt /sitemap.php break;
 
 ### Apache
 
-```
+注意：
+
+```bash
 RewriteEngine on
-RewriteBase /iapp-doc
+# 如果部署二级目录，请把下面一行打开
+# RewriteBase /dir
 RewriteRule ^book_(\d+).html$ book.php?book_id=$1
 RewriteRule ^article_(\d+).html$ article.php?article_id=$1
 ```

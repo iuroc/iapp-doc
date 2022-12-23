@@ -1,5 +1,6 @@
 RewriteEngine on
+# RewriteBase 这个值类似 HTML 的 base 标签值
 RewriteBase /iapp-doc
+# RewriteRule 正则需要以 .htaccess 文件所在目录为根目录，后者是正常的 HTML 相对路径
 RewriteRule ^book_(\d+).html$ book.php?book_id=$1
 RewriteRule ^article_(\d+).html$ article.php?article_id=$1
-RewriteRule ^(.*).html$ $1.php
