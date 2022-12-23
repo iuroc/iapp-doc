@@ -21,7 +21,7 @@ class Output extends Public_fun
             }
             $this->output_table(Config::$table['book']);
             $this->output_table(Config::$table['article']);
-            header('location: output.php?action=success');
+            header('location:output.php?action=success');
             die();
         } else if ($this->action == '' && file_exists('sql_output/' . Config::$table['book'] . '.sql') && file_exists('sql_output/' . Config::$table['article'] . '.sql')) {
             // 检查数据库文件是否存在

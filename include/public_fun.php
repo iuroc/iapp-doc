@@ -196,7 +196,7 @@ class Public_fun
     {
         $this->if_has_login();
         if (!$this->has_login) {
-            header('location: ./login.php');
+            header('location:login.php');
             die();
         }
     }

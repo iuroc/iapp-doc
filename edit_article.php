@@ -38,7 +38,7 @@ class Edit_article extends Public_fun
                     // 文章所属的手册有变化
                     $this->update_book_info();
                 }
-                header('location: ./article.php?article_id=' . $this->article_id);
+                header('location:' . $this->get_article_url());
             }
         } else {
             $this->mode_add = true;
@@ -52,7 +52,7 @@ class Edit_article extends Public_fun
                 $this->create_article();
                 $this->update_book_info();
                 $this->article_id = $this->get_new_article_id();
-                header('location: ./article.php?article_id=' . $this->article_id);
+                header('location:' . $this->get_article_url());
             }
         }
     }
@@ -181,9 +181,9 @@ $edit_article = new Edit_article();
             </div>
             <input type="hidden" name="submit" value="1">
             <input type="hidden" name="content" id="articleContent">
-            <input type="submit" id="submit" style="display: none;">
+            <!-- <input type="submit" id="submit" style="display: none;"> -->
+            <button class="btn btn-success mb-3" id="submitChange">提交修改</button>
         </form>
-        <button class="btn btn-success mb-3" id="submitChange" onclick="submitChange()">提交修改</button>
     </div>
     <script>
         // Ctrl + S 保存
@@ -223,21 +223,14 @@ $edit_article = new Edit_article();
         editor.setShowPrintMargin(false)
         editor.session.setUseWrapMode(true)
         editor.session.setTabSize(2)
-        editor.setOptions({
-            enableBasicAutocompletion: true, //
-            enableSnippets: true, //
-            enableLiveAutocompletion: true, // 补全
-        })
         let ContentEle = document.getElementById('articleContent')
         let formEle = document.getElementById('form')
         let submitEle = document.getElementById('submit')
         // 初始化 input 属性值
-        ContentEle.value = data.text
-
-        function submitChange() {
+        ContentEle.value = data ? data.text : ''
+        editor.session.on('change', function(delta) {
             ContentEle.value = editor.getValue()
-            submitEle.click()
-        }
+        })
     </script>
 </body>
 
