@@ -34,6 +34,10 @@ class Config
      */
     public static string $site_title = 'iApp 手册网';
     /**
+     * 站点描述（对部分页面有效）
+     */
+    public static string $description = '这是一个专注于分享 iApp 开发技术的网站，由热爱 iApp 的开发者创建。';
+    /**
      * 网站部署路径
      * 
      * 如果是根目录，则留空
