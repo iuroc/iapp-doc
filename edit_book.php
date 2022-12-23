@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 更新手册
  */
@@ -41,7 +41,7 @@ $edit_book = new Edit_book();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title>编辑手册信息 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'edit_book' // 页面标识
@@ -49,7 +49,7 @@ $edit_book = new Edit_book();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <div class="row">
             <div class="col-xxl-6 col-xl-7 col-lg-8 mx-auto">
@@ -82,7 +82,7 @@ $edit_book = new Edit_book();
         limitInputNum(nameDom, 250)
         limitInputNum(introDom, 500)
     </script>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

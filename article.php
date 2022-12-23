@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 文章页面
  */
@@ -29,7 +29,7 @@ function parse_content($text)
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title><?php echo $article->parse_value($article->article_title) ?> - <?php echo $article->parse_value($article->book_info['title']) ?> - <?php echo Config::$site_title ?></title>
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
     <?php $sub_content = parse_content($article->article_info['content']) ?>
@@ -43,7 +43,7 @@ function parse_content($text)
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <nav class="mb-4">
             <ol class="breadcrumb">
@@ -60,7 +60,11 @@ function parse_content($text)
         <div class="h2 mb-3 fw-bold"><?php echo $article->article_title ?></div>
         <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
         <hr>
-        <div id="content" class="mb-3"></div>
+        <div id="content" class="mb-3">
+            <?php
+            
+            ?>
+        </div>
         <?php
         if ($article->has_login) {
             echo '
@@ -86,8 +90,8 @@ function parse_content($text)
             return json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
         }
         ?>
-        let data = <?php echo parse_print($article->article_info['content']) . PHP_EOL ?>
-        document.getElementById('content').innerHTML = marked.parse(data.text);
+        // let data = <?php echo parse_print($article->article_info['content']) . PHP_EOL ?>
+        // document.getElementById('content').innerHTML = marked.parse(data.text);
     </script>
     <script src="js/prism.js"></script>
     <script>
@@ -109,7 +113,7 @@ function parse_content($text)
             })
         }
     </script>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

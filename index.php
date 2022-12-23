@@ -1,6 +1,6 @@
 <?php
-require('./config.php');
-require('./init.php');
+require('./include/config.php');
+require('./include/init.php');
 /**
  * 主页
  */
@@ -29,7 +29,7 @@ $index = new Index();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title><?php echo Config::$site_title ?></title>
     <meta name="description" content="<?php echo Config::$site_title ?> 专注 iApp 优质教程、实例分享">
     <meta name="keywords" content="iApp,鹏优创,代码,教程,安卓,手机,软件">
@@ -39,7 +39,7 @@ $index = new Index();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <div class="row mb-3">
             <?php
@@ -59,7 +59,7 @@ $index = new Index();
             ?>
         </div>
     </div>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

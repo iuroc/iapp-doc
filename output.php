@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 导出数据库
  */
@@ -47,7 +47,7 @@ $output = new Output();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title>导出数据库 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'home' // 页面标识
@@ -55,7 +55,7 @@ $output = new Output();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
@@ -77,7 +77,7 @@ $output = new Output();
         }
         ?>
     </div>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

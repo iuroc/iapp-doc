@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 手册主页
  */
@@ -34,7 +34,7 @@ $book = new Book();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title><?php echo strip_tags($book->book_title) ?> - <?php echo Config::$site_title ?></title>
     <meta name="description" content="<?php echo $book->parse_value($book->book_title) ?> <?php echo str_replace("\n", '', $book->parse_value($book->book_info['intro'])) ?>">
     <script>
@@ -43,7 +43,7 @@ $book = new Book();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <nav>
             <ol class="breadcrumb">
@@ -92,7 +92,7 @@ $book = new Book();
         }
         ?>
     </div>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

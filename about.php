@@ -1,6 +1,6 @@
 <?php
-require('./config.php');
-require('./init.php');
+require('./include/config.php');
+require('./include/init.php');
 /**
  * 上传手册
  */
@@ -10,7 +10,7 @@ require('./init.php');
 <html lang="zh-CN">
 
 <head>
-    <?php include './head.php' ?>
+    <?php include './include/head.php' ?>
     <title>关于 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'about' // 页面标识
@@ -18,7 +18,7 @@ require('./init.php');
 </head>
 
 <body>
-    <?php include './nav.php' ?>
+    <?php include './include/nav.php' ?>
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./" class="text-decoration-none">主页</a></li>
@@ -32,7 +32,7 @@ require('./init.php');
             <li>开发日期：2022年12月19日</li>
         </ul>
     </div>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

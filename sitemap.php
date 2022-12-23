@@ -1,6 +1,6 @@
 <?php
-require('./config.php');
-require('./init.php');
+require('./include/config.php');
+require('./include/init.php');
 header('Content-Type: text/plain; charset=utf-8');
 /**
  * 生成站点地图

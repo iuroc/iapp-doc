@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 删除文章
  */

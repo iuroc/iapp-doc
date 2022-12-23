@@ -1,6 +1,6 @@
 <?php
-require('./config.php');
-require('./init.php');
+require('./include/config.php');
+require('./include/init.php');
 /**
  * 管理员登录页面
  */
@@ -32,7 +32,7 @@ $login = new Login();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title>管理员</title>
     <script>
         const PAGE_NAME = 'login' // 页面标识
@@ -40,7 +40,7 @@ $login = new Login();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <nav>
             <ol class="breadcrumb">
@@ -73,7 +73,7 @@ $login = new Login();
         }
         ?>
     </div>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>

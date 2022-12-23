@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 编辑文章
  * 
@@ -103,7 +103,7 @@ $edit_article = new Edit_article();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title><?php echo $edit_article->status_text ?>文章 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'edit_book' // 页面标识
@@ -111,7 +111,7 @@ $edit_article = new Edit_article();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <nav>
             <ol class="breadcrumb">
@@ -145,7 +145,7 @@ $edit_article = new Edit_article();
             }
         })
     </script>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
     <script src="https://cdn.staticfile.org/ace/1.14.0/ace.min.js"></script>
     <script src="https://cdn.staticfile.org/ace/1.14.0/mode-markdown.min.js"></script>
     <script src="https://cdn.staticfile.org/ace/1.14.0/snippets/markdown.min.js"></script>

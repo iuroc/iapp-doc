@@ -1,7 +1,7 @@
 <?php
-require('./config.php');
-require('./init.php');
-require('./public_fun.php');
+require('./include/config.php');
+require('./include/init.php');
+require('./include/public_fun.php');
 /**
  * 上传手册
  */
@@ -128,7 +128,7 @@ new Upload();
 <html lang="zh-CN">
 
 <head>
-    <?php require('./head.php') ?>
+    <?php require('./include/head.php') ?>
     <title>上传手册</title>
     <script>
         const PAGE_NAME = 'upload' // 页面标识
@@ -144,7 +144,7 @@ new Upload();
 </head>
 
 <body>
-    <?php require('./nav.php') ?>
+    <?php require('./include/nav.php') ?>
     <div class="container">
         <div class="row">
             <div class="col-xxl-6 col-xl-7 col-lg-8 mx-auto">
@@ -182,7 +182,7 @@ new Upload();
         limitInputNum(nameDom, 250)
         limitInputNum(introDom, 500)
     </script>
-    <?php require('./footer.php') ?>
+    <?php require('./include/footer.php') ?>
 </body>
 
 </html>
