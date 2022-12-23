@@ -10,6 +10,9 @@ require('./include/public_fun.php');
  */
 class Search extends Public_fun
 {
+    /**
+     * 搜索关键词
+     */
     public string $keyword;
     /**
      * 搜索结果
@@ -95,7 +98,7 @@ $search = new Search();
     <div class="container">
         <div class="row mb-3">
             <?php
-            echo $search->make_article_list_html($search->result, true);
+            echo $search->make_article_list_html($search->result, true, $search->keyword);
             ?>
         </div>
     </div>

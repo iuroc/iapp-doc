@@ -228,6 +228,15 @@ class Public_fun
      */
     public function make_article_list_html(array $article_list, ...$show_book_title): string
     {
+        function parse_title(string $title, $show_book_title)
+        {
+            $keyword = $show_book_title[1] ?? '';
+            $keys = explode('%', $keyword);
+            foreach ($keys as $key) {
+                $title = str_replace($key, '<span class="text-danger">' . $key . '</span>', $title);
+            }
+            return $title;
+        }
         $html = '';
         foreach ($article_list as $article_info) {
             $html .= '
@@ -235,7 +244,7 @@ class Public_fun
             <a title="' . strip_tags($article_info['title']) . '"
                 class="justify-content-between card card-body shadow-sm h-100"
                 href="' . $this->get_article_url($article_info['id']) . '" role="button">
-                <div class="h5 text-truncate">' . $article_info['title'] . '</div>
+                <div class="h5 text-truncate">' . parse_title($article_info['title'], $show_book_title) . '</div>
                 <div class="mb-2 limit-line-4 text-muted text-justify">
                     ' . $this->parse_content($article_info['content']) .
                 '</div>
