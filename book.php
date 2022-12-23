@@ -61,12 +61,10 @@ $book = new Book();
                 return $text;
             }
             foreach ($book->article_list as $article_info) {
+                $url = Config::$url_static ? ('article_' . $article_info['id'] . '.html') : ('article.php?article_id=' . $article_info['id']);
                 echo '
             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-3">
-                <a title="' . strip_tags($article_info['title']) . '" class="justify-content-between card card-body shadow-sm h-100 text-decoration-none" href="' . (Config::$url_static ?
-                    'article_' . $article_info['id'] . '.html                                                                         '  :
-                    'article.php?article_id=' . $article_info['id']
-                ) . '" role="button">
+                <a title="' . strip_tags($article_info['title']) . '" class="justify-content-between card card-body shadow-sm h-100 text-decoration-none" href="' . $url . '" role="button">
                     <div class="h5 text-truncate">' . $article_info['title'] . '</div>
                     <div class="mb-2 limit-line-4 text-muted text-justify">' . parse_content($article_info['content']) . '</div>
                     <div class="text-muted small">' . $article_info['update_time'] . ' 最后更新</div>
