@@ -9,18 +9,6 @@ require('./include/public_fun.php');
  */
 class Edit_article extends Public_fun
 {
-    /**
-     * 是否是新增文章模式
-     */
-    public bool $mode_add;
-    /**
-     * 是否是编辑文章模式
-     */
-    public bool $mode_edit;
-    /**
-     * 状态文本，编辑/新增
-     */
-    public string $status_text;
     public function __construct()
     {
         $this->must_login();

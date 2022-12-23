@@ -6,6 +6,18 @@
 class Public_fun
 {
     /**
+     * 是否是新增文章模式
+     */
+    public bool $mode_add;
+    /**
+     * 是否是编辑文章模式
+     */
+    public bool $mode_edit;
+    /**
+     * 状态文本，编辑/新增
+     */
+    public string $status_text;
+    /**
      * 是否已经登录
      */
     public bool $has_login;
@@ -63,6 +75,26 @@ class Public_fun
         $data = mysqli_fetch_assoc($result);
         $this->book_info = $data;
         $this->book_title = $data['title'];
+    }
+    /**
+     * 获取最新一条手册记录的 ID 值
+     */
+    public function get_new_book_id()
+    {
+        $table = Config::$table['book'];
+        $sql = "SELECT `id` FROM `$table` ORDER BY `id` DESC LIMIT 1;";
+        $result = mysqli_query(Init::$conn, $sql);
+        $id = mysqli_fetch_assoc($result)['id'];
+        return $id;
+    }
+    /**
+     * 创建手册
+     */
+    public function create_book()
+    {
+        $table = Config::$table['book'];
+        $sql = "INSERT INTO `$table` (`title`, `intro`) VALUES ('{$this->title}', '{$this->intro}')";
+        mysqli_query(Init::$conn, $sql);
     }
     /**
      * 获取 `book_id` 参数

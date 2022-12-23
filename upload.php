@@ -57,15 +57,7 @@ class Upload extends Public_fun
         $this->create_article();
     }
 
-    /**
-     * 创建手册
-     */
-    public function create_book()
-    {
-        $table = Config::$table['book'];
-        $sql = "INSERT INTO `$table` (`title`, `intro`) VALUES ('{$this->title}', '{$this->intro}')";
-        mysqli_query(Init::$conn, $sql);
-    }
+    
     /**
      * 创建文章
      */
@@ -95,17 +87,7 @@ class Upload extends Public_fun
         $content = addslashes($content);
         return $content;
     }
-    /**
-     * 获取最新一条手册记录的 ID 值
-     */
-    public function get_new_book_id()
-    {
-        $table = Config::$table['book'];
-        $sql = "SELECT `id` FROM `$table` ORDER BY `id` DESC LIMIT 1;";
-        $result = mysqli_query(Init::$conn, $sql);
-        $id = mysqli_fetch_assoc($result)['id'];
-        return $id;
-    }
+    
     /**
      * 读取手册文本文件
      */
