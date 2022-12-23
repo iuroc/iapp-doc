@@ -70,7 +70,6 @@ function parse_content($text)
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
     <?php  ?>
     <meta name="description" content="<?php echo $description ?>">
-    <meta name="keywords" content="<?php echo $article->parse_value($article->article_title) ?>, <?php echo $article->parse_value($article->book_info['title']) ?>">
     <meta property="og:title" content="<?php echo $title ?>">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="<?php echo Config::$site_title ?>">
