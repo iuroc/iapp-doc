@@ -43,10 +43,9 @@ class Edit_article extends Public_fun
         } else {
             $this->mode_add = true;
             $this->mode_edit = false;
-            $this->get_new_book_id();
             $this->status_text = '新增';
             if ($submit) {
-                $this->get_book_id();
+                $this->get_new_book_id();
                 $this->get_title();
                 $this->get_content();
                 $this->create_article();
