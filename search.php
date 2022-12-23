@@ -15,6 +15,10 @@ class Search extends Public_fun
      */
     public string $keyword;
     /**
+     * 初始关键字（未被处理）
+     */
+    public string $keyword_first;
+    /**
      * 搜索结果
      */
     public array $result = [];
@@ -34,6 +38,7 @@ class Search extends Public_fun
     public function get_keyword()
     {
         $this->keyword = $_POST['keyword'] ?? $_GET['keyword'] ?? '';
+        $this->keyword_first = $this->keyword;
         $this->keyword = trim($this->keyword);
         $this->keyword = preg_replace('/\s+/', '%', $this->keyword);
         $this->keyword = addslashes($this->keyword);
@@ -85,7 +90,7 @@ $search = new Search();
 
 <head>
     <?php require('./include/head.php') ?>
-    <title>搜索 - <?php echo Config::$site_title ?></title>
+    <title>搜索结果 - <?php echo $search->keyword_first ?> - <?php echo Config::$site_title ?></title>
     <meta name="description" content="<?php echo Config::$site_title ?> <?php echo Config::$description ?>">
     <meta name="og:description" content="<?php echo Config::$site_title ?> <?php echo Config::$description ?>">
     <script>
@@ -95,13 +100,22 @@ $search = new Search();
 
 <body>
     <?php require('./include/nav.php') ?>
+    <script>
+        let keyword = <?php echo json_encode($search->keyword_first) ?>;
+        document.querySelector('nav [name="keyword"]').value = keyword
+    </script>
     <div class="container">
         <div class="row mb-3">
             <?php
-            echo $search->make_article_list_html($search->result, true, $search->keyword);
+            if (count($search->result) == 0) {
+                echo '<div class="lead">暂无搜索结果</div>';
+            } else {
+                echo $search->make_article_list_html($search->result, true, $search->keyword);
+            }
             ?>
         </div>
     </div>
+
     <?php require('./include/footer.php') ?>
 </body>
 
