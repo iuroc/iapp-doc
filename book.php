@@ -37,7 +37,25 @@ $book = new Book();
 <head>
     <?php require('./include/head.php') ?>
     <title><?php echo strip_tags($book->book_title) ?> - <?php echo Config::$site_title ?></title>
-    <meta name="description" content="<?php echo $book->parse_value($book->book_title) ?> <?php echo str_replace("\n", '', $book->parse_value($book->book_info['intro'])) ?>">
+    <?php
+    $description = $book->parse_value($book->book_title) . ' ' . str_replace("\n", '', $book->parse_value($book->book_info['intro']));
+    $description = parse_content_200($description);
+    /**
+     * 截取前 200 字符
+     */
+    function parse_content_200($text)
+    {
+        $text = str_replace("\n", '', htmlspecialchars(strip_tags(mb_substr($text, 0, 200))));
+        // 隐藏 Markdown 字符
+        $text = preg_replace('/[#[\]!<>*`-]/', '', $text);
+        return $text;
+    }
+    ?>
+    <meta name="description" content="<?php echo $description ?>">
+    <meta property="og:title" content="<?php echo $book->parse_value($book->book_title) ?> - <?php echo Config::$site_title ?><">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="<?php echo Config::$site_title ?>">
+    <meta name="og:description" content="<?php echo $description ?>">
     <script>
         const PAGE_NAME = 'book' // 页面标识
     </script>

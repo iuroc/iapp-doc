@@ -44,6 +44,9 @@ class Article extends Public_fun
     }
 }
 $article = new Article();
+/**
+ * 截取前 200 字符
+ */
 function parse_content($text)
 {
     $text = str_replace("\n", '', htmlspecialchars(strip_tags(mb_substr($text, 0, 200))));
@@ -58,11 +61,20 @@ function parse_content($text)
 
 <head>
     <?php require('./include/head.php') ?>
-    <title><?php echo $article->parse_value($article->article_title) ?> - <?php echo $article->parse_value($article->book_info['title']) ?> - <?php echo Config::$site_title ?></title>
+    <?php
+    $title = $article->parse_value($article->article_title) . ' - ' . $article->parse_value($article->book_info['title']) . ' - ' . Config::$site_title;
+    $sub_content = parse_content($article->article_info['content']);
+    $description = $article->parse_value($article->article_title) . ' ' . $sub_content . ' | ' . $article->parse_value($article->book_info['title']);
+    ?>
+    <title><?php echo $title ?></title>
     <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
-    <?php $sub_content = parse_content($article->article_info['content']) ?>
-    <meta name="description" content="<?php echo $article->parse_value($article->article_title) ?> <?php echo $sub_content ?> | <?php echo $article->parse_value($article->book_info['title']) ?>">
+    <?php  ?>
+    <meta name="description" content="<?php echo $description ?>">
     <meta name="keywords" content="<?php echo $article->parse_value($article->article_title) ?>, <?php echo $article->parse_value($article->book_info['title']) ?>">
+    <meta property="og:title" content="<?php echo $title ?>">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="<?php echo Config::$site_title ?>">
+    <meta name="og:description" content="<?php echo $description ?>">
     <link rel="stylesheet" href="css/prism-default.css">
     <link rel="stylesheet" href="css/article.css">
     <script>
