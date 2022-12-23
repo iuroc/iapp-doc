@@ -9,6 +9,8 @@ class Parse_fanyinhao extends Public_fun
 {
     public function __construct()
     {
+        // 危险操作，先关闭了
+        die();
         $this->must_login();
         $this->parse();
     }
@@ -19,8 +21,8 @@ class Parse_fanyinhao extends Public_fun
     {
         $table = Config::$table['article'];
         $sql = "UPDATE `$table` SET `content` = REPLACE(content, '\\\\\\\\', '\\\\')";
-        echo $sql;
         mysqli_query(Init::$conn, $sql);
     }
 }
 new Parse_fanyinhao();
+echo '处理完成';
