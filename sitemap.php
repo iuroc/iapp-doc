@@ -20,9 +20,11 @@ class Site_map
     public function __construct()
     {
         $this->urls = $this->domain . PHP_EOL;
-        $type = $_GET['type'] ?? 'text';
-        $this->get_books_url();
-        $this->get_article_url();
+        $type = $_GET['type'] ?? 'txt';
+        if ($type == 'txt') {
+            $this->get_books_url();
+            $this->get_article_url();
+        }
     }
     /**
      * 获取手册 URL 列表
