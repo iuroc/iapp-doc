@@ -95,7 +95,7 @@ function parse_content($text)
             ?>
         </div>
 
-        <div class="row mb-3">
+        <div class="row">
             <div class="col-md-6">
                 <?php
                 if ($article->last_article) {
@@ -106,7 +106,7 @@ function parse_content($text)
                     $last_url = $book_home_url;
                 }
                 ?>
-                <a class="card card-body text-decoration-none" role="button" href="<?php echo $last_url ?>">
+                <a class="card mb-3 card-body text-decoration-none" role="button" href="<?php echo $last_url ?>">
                     上一篇：<?php echo strip_tags($article->last_article['title']) ?? '没有更多了'; ?>
                 </a>
             </div>
@@ -120,7 +120,7 @@ function parse_content($text)
                     $next_url = $book_home_url;
                 }
                 ?>
-                <a class="card card-body text-decoration-none" role="button" href="<?php echo $next_url ?>">
+                <a class="card mb-3 card-body text-decoration-none" role="button" href="<?php echo $next_url ?>">
                     下一篇：<?php echo strip_tags($article->next_article['title']) ?? '没有更多了'; ?>
                 </a>
             </div>
