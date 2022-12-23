@@ -64,7 +64,7 @@ function parse_content($text)
         <div id="content" class="mb-3">
             <?php
             $Parsedown = new Parsedown();
-            // echo $Parsedown->text($article->article_info['content']);
+            echo $Parsedown->text($article->article_info['content']);
             ?>
         </div>
         <?php
