@@ -2,6 +2,7 @@
 require('./include/config.php');
 require('./include/init.php');
 require('./include/public_fun.php');
+require('./include/Parsedown.php');
 /**
  * 文章页面
  */
@@ -62,7 +63,8 @@ function parse_content($text)
         <hr>
         <div id="content" class="mb-3">
             <?php
-            
+            $Parsedown = new Parsedown();
+            // echo $Parsedown->text($article->article_info['content']);
             ?>
         </div>
         <?php
@@ -83,16 +85,6 @@ function parse_content($text)
         }
         ?>
     </div>
-    <script>
-        <?php
-        function parse_print($text)
-        {
-            return json_encode(['text' => $text], JSON_UNESCAPED_UNICODE);
-        }
-        ?>
-        // let data = <?php echo parse_print($article->article_info['content']) . PHP_EOL ?>
-        // document.getElementById('content').innerHTML = marked.parse(data.text);
-    </script>
     <script src="js/prism.js"></script>
     <script>
         // 手动触发
