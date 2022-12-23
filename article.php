@@ -85,7 +85,7 @@ function parse_content($text)
                 <li class="breadcrumb-item active"><?php echo strip_tags($article->article_title) ?></li>
             </ol>
         </nav>
-        <div class="h2 mb-3 fw-bold"><?php echo $article->article_title ?></div>
+        <div class="h2 mb-3 fw-bold text-success"><?php echo $article->article_title ?></div>
         <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
         <hr>
         <div id="content" class="mb-4">
