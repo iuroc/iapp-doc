@@ -10,7 +10,8 @@ def parse_text(text: str):
     '''
     text = re.sub(r'】(\s*\n)*', r'】```java\n', text)
     text = re.sub(r'(\n\s*)*【', r'\n```【', text)
-    text = re.sub(r'\\', r'\\\\', text)
+    # 由于预处理时默认将全文包裹在代码块中，所以无需转义反斜杠
+    # text = re.sub(r'\\', r'\\\\', text)
     return text
 
 
