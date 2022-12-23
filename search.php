@@ -10,6 +10,69 @@ require('./include/public_fun.php');
  */
 class Search extends Public_fun
 {
+    public string $keyword;
+    /**
+     * 搜索结果
+     */
+    public array $result = [];
+    /**
+     * 已经被搜索的ID列表
+     */
+    public array $ids = [];
+    public function __construct()
+    {
+        $this->get_keyword();
+        $this->search_title();
+        $this->search_content();
+    }
+    /**
+     * 获取参数 `keyword`
+     */
+    public function get_keyword()
+    {
+        $this->keyword = $_POST['keyword'] ?? $_GET['keyword'] ?? '';
+        $this->keyword = trim($this->keyword);
+        $this->keyword = preg_replace('/\s+/', '%', $this->keyword);
+        $this->keyword = addslashes($this->keyword);
+        if (!$this->keyword) {
+            header('location: ./');
+            die();
+        }
+    }
+    /**
+     * 标题搜索，优先级最高
+     */
+    public function search_title()
+    {
+        $table = Config::$table['article'];
+        $table_2 = Config::$table['book'];
+        $sql = "SELECT article.*, book.`title` AS `book_title` FROM `$table` AS article, `$table_2` AS book WHERE article.`title` LIKE '%{$this->keyword}%' AND article.`book_id` = book.`id`;";
+        $result = mysqli_query(Init::$conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            array_push($this->ids, $id);
+            array_push($this->result, $row);
+        }
+    }
+
+    /**
+     * 搜索正文，优先级小于标题搜索
+     */
+    public function search_content()
+    {
+        $table = Config::$table['article'];
+        $table_2 = Config::$table['book'];
+        $sql = "SELECT article.*, book.`title` AS `book_title` FROM `$table` AS article, `$table_2` AS book WHERE article.`content` LIKE '%{$this->keyword}%' AND article.`book_id` = book.`id`;";
+        $result = mysqli_query(Init::$conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            // 判断没有被匹配过
+            if (!in_array($id, $this->ids)) {
+                array_push($this->ids, $id);
+                array_push($this->result, $row);
+            }
+        }
+    }
 }
 
 $search = new Search();
@@ -31,6 +94,9 @@ $search = new Search();
     <?php require('./include/nav.php') ?>
     <div class="container">
         <div class="row mb-3">
+            <?php
+            echo $search->make_article_list_html($search->result, true);
+            ?>
         </div>
     </div>
     <?php require('./include/footer.php') ?>

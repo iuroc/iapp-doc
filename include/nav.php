@@ -9,9 +9,9 @@
                 <li class="nav-item nav-item-home">
                     <a class="nav-link" href="./">主页</a>
                 </li>
-                <li class="nav-item nav-item-search">
+                <!-- <li class="nav-item nav-item-search">
                     <a class="nav-link" href="./search.php">搜索</a>
-                </li>
+                </li> -->
                 <li class="nav-item nav-item-login">
                     <a class="nav-link" href="./login.php">管理员</a>
                 </li>
@@ -19,10 +19,10 @@
                     <a class="nav-link" href="./about.php">关于</a>
                 </li>
             </ul>
-            <div class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="请输入搜索关键词">
+            <form class="d-flex" method="GET" action="search.php">
+                <input class="form-control me-2" name="keyword" required type="search" placeholder="请输入搜索关键词">
                 <button class="btn btn-outline-success text-nowrap">搜索</button>
-            </div>
+            </form>
         </div>
     </div>
 </nav>

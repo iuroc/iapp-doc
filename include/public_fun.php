@@ -220,4 +220,45 @@ class Public_fun
         $article_url_static = 'article_' . $article_id . '.html';
         return Config::$url_static ? $article_url_static : $article_url;
     }
+    /**
+     * 生成文章列表 HTML
+     * 
+     * @param array $article_list 文章列表数据
+     * @param array ...$show_book_title (bool) 是否显示文章所属手册标题
+     */
+    public function make_article_list_html(array $article_list, ...$show_book_title): string
+    {
+        $html = '';
+        foreach ($article_list as $article_info) {
+            $html .= '
+        <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-3">
+            <a title="' . strip_tags($article_info['title']) . '"
+                class="justify-content-between card card-body shadow-sm h-100"
+                href="' . $this->get_article_url($article_info['id']) . '" role="button">
+                <div class="h5 text-truncate">' . $article_info['title'] . '</div>
+                <div class="mb-2 limit-line-4 text-muted text-justify">
+                    ' . $this->parse_content($article_info['content']) .
+                '</div>
+                ' . (($show_book_title[0] ?? null) ? ('<div class="text-primary mb-2">' . $article_info['book_title'] . '</div>') : '') . '
+                <div class="text-muted small">' . $article_info['update_time'] . ' 最后更新</div>
+            </a>
+        </div>';
+        }
+        return $html;
+    }
+    /**
+     * 去除 HTML 标签后，输出前 120 字符
+     */
+    public function parse_content($text)
+    {
+        $text = strip_tags(mb_substr($text, 0, 120));
+        // 隐藏 Markdown 字符
+        $text = preg_replace('/[#[\]!<>*`-]/', '', $text);
+        return $text;
+    }
 }
+
+
+// 关于什么时候需要用形参
+// 1. 形参不是成员变量
+// 2. 函数不需要被多次循环调用

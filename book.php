@@ -72,27 +72,7 @@ $book = new Book();
         </nav>
         <div class="row">
             <?php
-            function parse_content($text)
-            {
-                $text = strip_tags(mb_substr($text, 0, 120));
-                // 隐藏 Markdown 字符
-                $text = preg_replace('/[#[\]!<>*`-]/', '', $text);
-                return $text;
-            }
-            foreach ($book->article_list as $article_info) {
-                echo '
-            <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-3">
-                <a title="' . strip_tags($article_info['title']) . '"
-                    class="justify-content-between card card-body shadow-sm h-100"
-                    href="' . $book->get_article_url($article_info['id']) . '" role="button">
-                    <div class="h5 text-truncate">' . $article_info['title'] . '</div>
-                    <div class="mb-2 limit-line-4 text-muted text-justify">
-                        ' . parse_content($article_info['content']) .
-                    '</div>
-                    <div class="text-muted small">' . $article_info['update_time'] . ' 最后更新</div>
-                </a>
-            </div>';
-            }
+            echo $book->make_article_list_html($book->article_list);
             ?>
         </div>
         <?php
