@@ -20,12 +20,19 @@ class Edit_article extends Public_fun
             $this->get_article_id();
             $this->status_text = '编辑';
             $this->get_article_info();
+            // 更新原手册的更新时间
+            $this->update_book_info();
             if ($submit) {
+                $old_book_id = $this->book_id;
                 $this->get_new_book_id();
                 $this->get_title();
                 $this->get_content();
                 $this->update();
-                $this->update_book_info();
+                // 更新新手册的更新时间
+                if ($old_book_id != $this->book_id) {
+                    // 文章所属的手册有变化
+                    $this->update_book_info();
+                }
                 header('location: ./article.php?article_id=' . $this->article_id);
             }
         } else {
@@ -184,6 +191,8 @@ $edit_article = new Edit_article();
         let ContentEle = document.getElementById('articleContent')
         let formEle = document.getElementById('form')
         let submitEle = document.getElementById('submit')
+        // 初始化 input 属性值
+        ContentEle.value = data.text
 
         function submitChange() {
             ContentEle.value = editor.getValue()
