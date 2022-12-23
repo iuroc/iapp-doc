@@ -107,7 +107,7 @@ function parse_content($text)
                 }
                 ?>
                 <a class="card card-body text-decoration-none" role="button" href="<?php echo $last_url ?>">
-                    上一篇：<?php echo $article->last_article['title'] ?? '没有更多了'; ?>
+                    上一篇：<?php echo strip_tags($article->last_article['title']) ?? '没有更多了'; ?>
                 </a>
             </div>
             <div class="col-md-6">
@@ -121,7 +121,7 @@ function parse_content($text)
                 }
                 ?>
                 <a class="card card-body text-decoration-none" role="button" href="<?php echo $next_url ?>">
-                    下一篇：<?php echo $article->next_article['title'] ?? '没有更多了'; ?>
+                    下一篇：<?php echo strip_tags($article->next_article['title']) ?? '没有更多了'; ?>
                 </a>
             </div>
         </div>

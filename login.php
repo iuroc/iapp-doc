@@ -33,7 +33,7 @@ $login = new Login();
 
 <head>
     <?php require('./include/head.php') ?>
-    <title>管理员</title>
+    <title>管理员 - <?php echo Config::$site_title ?></title>
     <script>
         const PAGE_NAME = 'login' // 页面标识
     </script>

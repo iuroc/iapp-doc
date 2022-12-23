@@ -30,7 +30,7 @@ $index = new Index();
 
 <head>
     <?php require('./include/head.php') ?>
-    <title><?php echo Config::$site_title ?></title>
+    <title><?php echo Config::$site_title ?> - 鹏优创</title>
     <meta name="description" content="<?php echo Config::$site_title ?> 这是一个专注于分享 iApp 开发技术的网站，由热爱 iApp 的开发者创建。">
     <meta name="keywords" content="iApp,鹏优创,代码,教程,安卓,手机,软件">
     <script>
