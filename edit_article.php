@@ -21,6 +21,7 @@ class Edit_article extends Public_fun
             $this->status_text = '编辑';
             $this->get_article_info();
             if ($submit) {
+                $this->get_new_book_id();
                 $this->get_title();
                 $this->get_content();
                 $this->update();
@@ -30,9 +31,10 @@ class Edit_article extends Public_fun
         } else {
             $this->mode_add = true;
             $this->mode_edit = false;
-            $this->get_book_id();
+            $this->get_new_book_id();
             $this->status_text = '新增';
             if ($submit) {
+                $this->get_book_id();
                 $this->get_title();
                 $this->get_content();
                 $this->create_article();
@@ -41,6 +43,18 @@ class Edit_article extends Public_fun
                 header('location: ./article.php?article_id=' . $this->article_id);
             }
         }
+    }
+
+    /**
+     * 获取 POST 参数 new_book_id
+     */
+    public function get_new_book_id()
+    {
+        $book_id = $_POST['new_book_id'] ?? '';
+        if ($book_id == '') {
+            die('手册ID不能为空');
+        }
+        $this->book_id = $book_id;
     }
     /**
      * 更新手册的更新时间
@@ -80,7 +94,7 @@ class Edit_article extends Public_fun
     public function update()
     {
         $table = Config::$table['article'];
-        $sql = "UPDATE `$table` SET `title` = '{$this->title}', `content` = '{$this->content}', `update_time` = CURRENT_TIMESTAMP WHERE `id` = {$this->article_id};";
+        $sql = "UPDATE `$table` SET `book_id` = '{$this->book_id}', `title` = '{$this->title}', `content` = '{$this->content}', `update_time` = CURRENT_TIMESTAMP WHERE `id` = {$this->article_id};";
         mysqli_query(Init::$conn, $sql);
     }
 }
@@ -117,6 +131,10 @@ $edit_article = new Edit_article();
             <div class="mb-3">
                 <label class="form-label">文章内容（Markdown 格式）</label>
                 <div id="editor" style="height: 500px;" class="border shadow-sm border rounded"></div>
+            </div>
+            <div class="mb-3">
+                <label for="bookId" class="form-label">文章所属手册 ID（修改后可实现文章移动）</label>
+                <input type="text" class="form-control" name="new_book_id" id="bookId" placeholder="请输入手册 ID" value="<?php echo $edit_article->book_id ?>" required>
             </div>
             <input type="hidden" name="submit" value="1">
             <input type="hidden" name="content" id="articleContent">
