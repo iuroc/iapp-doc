@@ -28,7 +28,7 @@ require('./include/init.php');
         <p>这是一个专注于分享 iApp 开发技术的网站，由热爱 iApp 的开发者创建。</p>
         <p>iApp 是一代程序员的青春，我们缅怀，也在不断前行。</p>
         <p>本站长期收集优质教程文档，欢迎您通过下方的邮箱向本站投稿。</p>
-        <ul>
+        <ul class="mb-4">
             <li class="mb-1">投稿、反馈邮箱：<a href="mailto:m@apee.top" class="text-decoration-none">m@apee.top</a></li>
             <li class="mb-1">站长的 Github：<a href="https://github.com/oyps" class="text-decoration-none" target="_blank">欧阳鹏（oyps）</a></li>
             <li class="mb-1">站长的工作室：<a href="https://apee.top" class="text-decoration-none" target="_blank">https://apee.top</a></li>

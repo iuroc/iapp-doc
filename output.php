@@ -68,9 +68,9 @@ $output = new Output();
         }
         if ($output->action == 'output' || $output->action == 'success' || $output->action == 'exists') {
             echo '
-        <a class="btn btn-primary me-2" href="sql_output/' . Config::$table['book'] . '.sql">手册数据</a>
-        <a class="btn btn-success me-2" href="sql_output/' . Config::$table['article'] . '.sql">文章数据</a>
-        <a class="btn btn-secondary" href="?action=output">重新导出</a>';
+        <a class="btn btn-primary me-2 mb-3" href="sql_output/' . Config::$table['book'] . '.sql">手册数据</a>
+        <a class="btn btn-success me-2 mb-3" href="sql_output/' . Config::$table['article'] . '.sql">文章数据</a>
+        <a class="btn btn-secondary mb-3" href="?action=output">重新导出</a>';
         } else {
             echo '
         <a class="btn btn-primary" href="?action=output">开始导出</a>';
