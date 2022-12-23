@@ -3,5 +3,5 @@
 /**
  * 退出登录
  */
-setcookie('password', '', 0, '/');
+setcookie('password', '', time() - 3600, '/');
 header('location:login.php');

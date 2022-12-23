@@ -17,7 +17,7 @@ class Login
             $password = $_COOKIE['password'] ?? '';
         }
         $this->has_login = $password == Config::$admin['password'];
-        setcookie('password', $password, 0, '/');
+        setcookie('password', $password, time() + 3600 * 24 * 365, '/');
         if ($action == 'login') {
             header('location:./login.php');
             die();
