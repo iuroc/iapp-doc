@@ -46,6 +46,25 @@
 | /book_3.html      | /book.php?book_id=3         | 某手册主页 |
 | /article_123.html | /article.php?article_id=123 | 某文章页面 |
 
+## 伪静态设置
+
+### Ngnix
+
+```
+rewrite ^/book_(\d+).html$ /book.php?book_id=$1 break;
+rewrite ^/article_(\d+).html$ /article.php?article_id=$1 break;
+rewrite ^/sitemap.txt /sitemap.php break;
+```
+
+### Apache
+
+```
+RewriteEngine on
+RewriteBase /iapp-doc
+RewriteRule ^book_(\d+).html$ book.php?book_id=$1
+RewriteRule ^article_(\d+).html$ article.php?article_id=$1
+```
+
 ## 待优化
 
 - 兼容性问题分析（不同浏览器、服务器、软件版本测试）
