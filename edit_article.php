@@ -156,10 +156,6 @@ $edit_article = new Edit_article();
                 <label class="form-label">文章内容（Markdown 格式）</label>
                 <div id="editor" style="height: 500px;" class="border shadow-sm border rounded"></div>
             </div>
-            <!-- <div class="mb-3">
-                <label for="bookId" class="form-label">文章所属手册 ID（修改后可实现文章移动）</label>
-                <input type="text" class="form-control" name="new_book_id" id="bookId" placeholder="请输入手册 ID" value="<?php echo $edit_article->book_id ?>" required>
-            </div> -->
             <div class="mb-3">
                 <label for="bookId" class="form-label">文章所属手册</label>
                 <select class="form-select" name="new_book_id" id="bookId">
@@ -200,8 +196,12 @@ $edit_article = new Edit_article();
         let data = <?php echo $edit_article->mode_edit ? parse_print($edit_article->article_info['content']) : 'null' ?>;
         ace.config.set('basePath', 'https://cdn.staticfile.org/ace/1.14.0/')
         var editor = ace.edit('editor')
-        editor.setTheme("ace/theme/tomorrow");
-        editor.setFontSize(20)
+        // editor.setTheme("ace/theme/tomorrow");
+        if (window.innerWidth > 576) {
+            editor.setFontSize(20)
+        } else {
+            editor.setFontSize(15)
+        }
         const mdMode = ace.require("ace/mode/markdown").Mode;
         editor.session.setMode(new mdMode())
         if (data) {
