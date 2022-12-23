@@ -72,11 +72,17 @@ $edit_book = new Edit_book();
                     <div class="h4 mb-3"><?php echo $edit_book->status_text ?>手册信息</div>
                     <div class="mb-3">
                         <label for="bookName" class="form-label">手册名称（250字以内）</label>
-                        <input type="text" class="form-control" name="title" id="bookName" placeholder="请输入手册名称" value="<?php echo $edit_book->mode_edit ? htmlspecialchars($edit_book->book_title) : '' ?>" required>
+                        <input type="text" class="form-control" name="title" id="bookName" placeholder="请输入手册名称" value="<?php
+                                                                                                                        echo $edit_book->mode_edit ?
+                                                                                                                            htmlspecialchars($edit_book->book_title) :
+                                                                                                                            '' ?>" required>
                     </div>
                     <div class="mb-3">
                         <label for="bookIntro" class="form-label">手册介绍（500 字以内）</label>
-                        <textarea class="form-control" name="intro" rows="5" id="bookIntro" placeholder="这是一本神奇的手册..." required><?php echo $edit_book->mode_edit ? htmlspecialchars($edit_book->book_info['intro']) : '' ?></textarea>
+                        <textarea class="form-control" name="intro" rows="5" id="bookIntro" placeholder="这是一本神奇的手册..." required><?php
+                                                                                                                                echo $edit_book->mode_edit ?
+                                                                                                                                    htmlspecialchars($edit_book->book_info['intro']) :
+                                                                                                                                    '' ?></textarea>
                     </div>
                     <input type="hidden" name="submit" value="1">
                     <button class="btn btn-success mb-3">提交修改</button>

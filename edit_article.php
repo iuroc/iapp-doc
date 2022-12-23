@@ -157,7 +157,9 @@ $edit_article = new Edit_article();
             <div class="h4 mb-3"><?php echo $edit_article->status_text ?>文章</div>
             <div class="mb-3">
                 <label for="articleTitle" class="form-label">文章标题（250字以内）</label>
-                <input type="text" class="form-control" name="title" id="articleTitle" placeholder="请输入文章标题" value="<?php echo $edit_article->mode_edit ? htmlspecialchars($edit_article->article_title) : '' ?>" required>
+                <input type="text" class="form-control" name="title" id="articleTitle" placeholder="请输入文章标题" value="<?php echo $edit_article->mode_edit ?
+                                                                                                                        htmlspecialchars($edit_article->article_title) :
+                                                                                                                        '' ?>" required>
             </div>
             <div class="mb-3">
                 <label class="form-label">文章内容（Markdown 格式）</label>
@@ -169,7 +171,10 @@ $edit_article = new Edit_article();
                     <?php
                     foreach ($edit_article->book_list as $book_info) {
                         $seleted = $book_info['id'] == $edit_article->book_id;
-                        echo '<option value="' . $book_info['id'] . '" ' . ($seleted ? 'selected' : '') . '>' . strip_tags($book_info['title']) . '</option>';
+                        echo '
+                        <option value="' . $book_info['id'] . '" ' . ($seleted ? 'selected' : '') . '>' .
+                            strip_tags($book_info['title']) . '
+                        </option>';
                     }
                     ?>
                 </select>
