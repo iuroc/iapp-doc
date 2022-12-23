@@ -57,7 +57,7 @@ class Upload extends Public_fun
         $this->create_article();
     }
 
-    
+
     /**
      * 创建文章
      */
@@ -74,8 +74,8 @@ class Upload extends Public_fun
             if (count($item) != 2) {
                 continue;
             }
-            $title = addslashes($item[0]);
-            $content = $this->parseContent($item[1]);
+            $title = addslashes(trim($item[0]));
+            $content = $this->parseContent(trim($item[1]));
             $sql = "INSERT INTO `$table` (`title`, `content`, `book_id`, `update_time`) VALUES ('$title', '$content', '$book_id', '$datetime');";
             mysqli_query(Init::$conn, $sql);
         }
@@ -87,7 +87,7 @@ class Upload extends Public_fun
         $content = addslashes($content);
         return $content;
     }
-    
+
     /**
      * 读取手册文本文件
      */
