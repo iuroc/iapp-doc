@@ -31,7 +31,7 @@ $index = new Index();
 <head>
     <?php require('./include/head.php') ?>
     <title><?php echo Config::$site_title ?></title>
-    <meta name="description" content="<?php echo Config::$site_title ?> 专注 iApp 优质教程、实例分享">
+    <meta name="description" content="<?php echo Config::$site_title ?> 这是一个专注于分享 iApp 开发技术的网站，由热爱 iApp 的开发者创建。">
     <meta name="keywords" content="iApp,鹏优创,代码,教程,安卓,手机,软件">
     <script>
         const PAGE_NAME = 'home' // 页面标识
