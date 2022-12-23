@@ -8,12 +8,38 @@ require('./include/Parsedown.php');
  */
 class Article extends Public_fun
 {
+    /**
+     * 上一篇文章数据
+     */
+    public array $last_article;
+    /**
+     * 下一篇文章数据
+     */
+    public array $next_article;
     public function __construct()
     {
         $this->get_article_id();
         $this->get_article_info();
+        $this->last_article = $this->get_last_next_article(true);
+        $this->next_article = $this->get_last_next_article(false);
         $this->get_book_info();
         $this->if_has_login();
+    }
+    /**
+     * 获取上一篇和下一篇
+     * @param bool $is_last 上一篇：true，下一篇：false
+     */
+    public function get_last_next_article(bool $is_last)
+    {
+        $table = Config::$table['article'];
+        $s = $is_last ? '<' : '>';
+        $sql = "SELECT * FROM `$table` WHERE `id` $s {$this->article_id} AND `book_id` = '{$this->book_id}' LIMIT 1;";
+        $result = mysqli_query(Init::$conn, $sql);
+        if (mysqli_num_rows($result) == 0) {
+            return [];
+        }
+        $data = mysqli_fetch_assoc($result);
+        return $data;
     }
 }
 $article = new Article();
@@ -53,6 +79,7 @@ function parse_content($text)
                 $book_url = Config::$site_path . '/book.php?book_id=' . $article->book_info['id'];
                 $book_url_static = Config::$site_path . '/book_' . $article->book_info['id'] . '.html';
                 $url = Config::$url_static ? $book_url_static : $book_url;
+                $book_home_url = $url;
                 ?>
                 <li class="breadcrumb-item"><a href="<?php echo $url ?>" class="text-decoration-none"><?php echo strip_tags($article->book_info['title']) ?></a></li>
                 <li class="breadcrumb-item active"><?php echo strip_tags($article->article_title) ?></li>
@@ -61,11 +88,42 @@ function parse_content($text)
         <div class="h2 mb-3 fw-bold"><?php echo $article->article_title ?></div>
         <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
         <hr>
-        <div id="content" class="mb-3">
+        <div id="content" class="mb-4">
             <?php
             $Parsedown = new Parsedown();
             echo $Parsedown->text($article->article_info['content']);
             ?>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <?php
+                if ($article->last_article) {
+                    $last_url = Config::$url_static ?
+                        'article_' . $article->last_article['id'] . '.html' :
+                        'article.php?article_id=' . $article->last_article['id'];
+                } else {
+                    $last_url = $book_home_url;
+                }
+                ?>
+                <a class="card card-body text-decoration-none" role="button" href="<?php echo $last_url ?>">
+                    上一篇：<?php echo $article->last_article['title'] ?? '没有更多了'; ?>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <?php
+                if ($article->next_article) {
+                    $next_url = Config::$url_static ?
+                        'article_' . $article->next_article['id'] . '.html' :
+                        'article.php?article_id=' . $article->next_article['id'];
+                } else {
+                    $next_url = $book_home_url;
+                }
+                ?>
+                <a class="card card-body text-decoration-none" role="button" href="<?php echo $next_url ?>">
+                    下一篇：<?php echo $article->next_article['title'] ?? '没有更多了'; ?>
+                </a>
+            </div>
         </div>
         <?php
         if ($article->has_login) {
