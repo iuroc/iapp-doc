@@ -9,9 +9,14 @@ require('./include/public_fun.php');
  */
 class Edit_article extends Public_fun
 {
+    /**
+     * 手册列表
+     */
+    public array $book_list;
     public function __construct()
     {
         $this->must_login();
+        $this->get_book_list();
         $action = $_GET['action'] ?? '';
         $submit = $_POST['submit'] ?? '';
         if ($action == 'edit') {
@@ -50,6 +55,18 @@ class Edit_article extends Public_fun
                 header('location: ./article.php?article_id=' . $this->article_id);
             }
         }
+    }
+
+    /**
+     * 获取手册列表
+     */
+    public function get_book_list()
+    {
+        $table = Config::$table['book'];
+        $sql = "SELECT * FROM `$table`";
+        $result = mysqli_query(Init::$conn, $sql);
+        $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $this->book_list = $data;
     }
 
     /**
@@ -139,9 +156,20 @@ $edit_article = new Edit_article();
                 <label class="form-label">文章内容（Markdown 格式）</label>
                 <div id="editor" style="height: 500px;" class="border shadow-sm border rounded"></div>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="bookId" class="form-label">文章所属手册 ID（修改后可实现文章移动）</label>
                 <input type="text" class="form-control" name="new_book_id" id="bookId" placeholder="请输入手册 ID" value="<?php echo $edit_article->book_id ?>" required>
+            </div> -->
+            <div class="mb-3">
+                <label for="bookId" class="form-label">文章所属手册</label>
+                <select class="form-select" name="new_book_id" id="bookId">
+                    <?php
+                    foreach ($edit_article->book_list as $book_info) {
+                        $seleted = $book_info['id'] == $edit_article->book_id;
+                        echo '<option value="' . $book_info['id'] . '" ' . ($seleted ? 'selected' : '') . '>' . strip_tags($book_info['title']) . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
             <input type="hidden" name="submit" value="1">
             <input type="hidden" name="content" id="articleContent">
