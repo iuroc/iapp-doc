@@ -12,10 +12,17 @@
 
 ## 功能规划
 
-- 代码搜索（标题、全文）
-- 文章可编辑，手册可增加文章
-- Markdown 默认支持
-- 控制台：导入手册、删除手册
+- 代码搜索（标题 + 全文）
+- 编辑文章
+- 新增文章
+- 删除文章
+- Markdown 支持
+- 新增手册
+- 导入手册
+- 编辑手册
+- 删除手册
+- 导出数据库
+- 管理员登录
 
 ## 数据库设计
 
@@ -39,14 +46,12 @@
 | update_time | datetime | 更新时间 |
 | book_id     | int      | 手册ID   |
 
-## 路由规划
+## 伪静态设置
 
 | 伪静态后URL       | 原URL                       | 描述       |
 | ----------------- | --------------------------- | ---------- |
 | /book_3.html      | /book.php?book_id=3         | 某手册主页 |
 | /article_123.html | /article.php?article_id=123 | 某文章页面 |
-
-## 伪静态设置
 
 ### Ngnix
 
@@ -67,14 +72,6 @@ RewriteEngine on
 RewriteRule ^book_(\d+).html$ book.php?book_id=$1
 RewriteRule ^article_(\d+).html$ article.php?article_id=$1
 ```
-
-## 待优化
-
-- 兼容性问题分析（不同浏览器、服务器、软件版本测试）
-- 优化移动端文章编辑器
-- 文章章节的排序问题
-- Markdown 阅读器的文档大纲显示
-- 谷歌收录
 
 ## 部署说明
 
