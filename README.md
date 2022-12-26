@@ -115,3 +115,10 @@ RewriteRule ^sitemap2.xml sitemap.php?format=xml
 
 - `】(\s*\n)*` => `】```java\n`
 - `(\n\s*)*【` => `\n```【`
+
+
+## 使用到的开源项目
+
+- [Ace 代码编辑器](https://github.com/ajaxorg/ace)
+- [github-markdown-css](https://github.com/sindresorhus/github-markdown-css)
+- [PrismJS 代码高亮](https://prismjs.com)

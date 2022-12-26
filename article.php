@@ -67,8 +67,6 @@ function parse_content($text)
     $description = $article->parse_value($article->article_title) . ' ' . $sub_content . ' | ' . $article->parse_value($article->book_info['title']);
     ?>
     <title><?php echo $title ?></title>
-    <script src="https://cdn.staticfile.org/marked/4.2.4/marked.min.js"></script>
-    <?php  ?>
     <meta name="description" content="<?php echo $description ?>">
     <meta property="og:title" content="<?php echo $title ?>">
     <meta property="og:type" content="article">
