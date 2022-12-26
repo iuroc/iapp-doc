@@ -74,8 +74,9 @@ function parse_content($text)
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="<?php echo Config::$site_title ?>">
     <meta name="og:description" content="<?php echo $description ?>">
-    <link rel="stylesheet" href="css/prism-default.css">
     <link rel="stylesheet" href="css/article.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/5.1.0/github-markdown.min.css">
+    <link rel="stylesheet" href="css/prism-default.css">
     <script>
         const PAGE_NAME = 'book' // 页面标识
     </script>
@@ -97,8 +98,8 @@ function parse_content($text)
         </nav>
         <div class="h2 mb-3 fw-bold text-success"><?php echo htmlspecialchars($article->article_title) ?></div>
         <div class="text-muted"><?php echo $article->article_info['update_time'] ?> 最后更新</div>
-        <hr>
-        <div id="content" class="mb-4">
+
+        <div id="content" class="markdown-body mb-4 mt-4">
             <?php
             $Parsedown = new Parsedown();
             echo $Parsedown->text($article->article_info['content']);
