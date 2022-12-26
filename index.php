@@ -37,6 +37,12 @@ $index = new Index();
     <script>
         const PAGE_NAME = 'home' // 页面标识
     </script>
+    <style>
+        .bookListItem {
+            border-left: 8px solid var(--bs-success);
+            border-bottom: 3px solid var(--bs-success);
+        }
+    </style>
 </head>
 
 <body>
@@ -48,7 +54,7 @@ $index = new Index();
                 echo '
             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 mb-3">
                 <a title="' . strip_tags($book_info['title']) . '"
-                    class="justify-content-between card card-body shadow-sm h-100"
+                    class="bookListItem justify-content-between card card-body shadow-sm h-100"
                     href="' . $index->get_book_url($book_info['id']) . '" role="button">
                     <div class="h5 text-truncate">' . $book_info['title'] . '</div>
                     <div class="mb-2 limit-line-4 text-muted text-justify">'
