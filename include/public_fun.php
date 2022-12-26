@@ -233,7 +233,7 @@ class Public_fun
             $keyword = $show_book_title[1] ?? '';
             $keys = explode('%', $keyword);
             foreach ($keys as $key) {
-                $title = str_replace($key, '<span class="text-danger">' . $key . '</span>', $title);
+                $title = str_replace(strtolower($key), '<span class="text-danger">' . $key . '</span>', strtolower($title));
             }
             return $title;
         }
