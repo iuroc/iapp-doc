@@ -1,6 +1,8 @@
 RewriteEngine on
-# RewriteBase 这个值类似 HTML 的 base 标签值
-RewriteBase /iapp-doc
+# RewriteBase 这个值类似 HTML 的 base 标签值，如果部署二级目录，填写 /path，如果是根目录，则填 /
+RewriteBase /
 # RewriteRule 正则需要以 .htaccess 文件所在目录为根目录，后者是正常的 HTML 相对路径
 RewriteRule ^book_(\d+).html$ book.php?book_id=$1
 RewriteRule ^article_(\d+).html$ article.php?article_id=$1
+RewriteRule ^sitemap.xml sitemap.php?format=xml
+RewriteRule ^sitemap2.xml sitemap.php?format=xml
