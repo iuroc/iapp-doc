@@ -57,7 +57,8 @@
 ```
 rewrite ^/book_(\d+).html$ /book.php?book_id=$1 break;
 rewrite ^/article_(\d+).html$ /article.php?article_id=$1 break;
-rewrite ^/sitemap.txt /sitemap.php break;
+rewrite ^/sitemap2.xml /sitemap.php?format=xml break;
+rewrite ^/sitemap.xml /sitemap.php?format=xml break;
 ```
 
 ### Apache
@@ -66,19 +67,30 @@ rewrite ^/sitemap.txt /sitemap.php break;
 
 ```bash
 RewriteEngine on
-# 如果部署二级目录，请把下面一行打开
-# RewriteBase /dir
+# RewriteBase 这个值类似 HTML 的 base 标签值，如果部署二级目录，填写 /path，如果是根目录，则填 /
+RewriteBase /
+# RewriteRule 正则需要以 .htaccess 文件所在目录为根目录，后者是正常的 HTML 相对路径
 RewriteRule ^book_(\d+).html$ book.php?book_id=$1
 RewriteRule ^article_(\d+).html$ article.php?article_id=$1
+RewriteRule ^sitemap.xml sitemap.php?format=xml
+RewriteRule ^sitemap2.xml sitemap.php?format=xml
 ```
 
 ## 部署说明
 
-1. 将源代码上传到网站目录
+1. 下载项目源代码，解压到网站目录，或者直接在网站目录执行下面的命令
+
+    ```bash
+    git clone https://github.com/oyps/iapp-doc.git
+    ```
+
 2. 为网站目录设置 `777` 权限
-3. `include/config.php` 可以进行站点配置
+3. 打开 `include/config.php`
+   1. 修改数据库账号和密码，也可以进行其他站点配置
+   2. 如果需要支持二级目录，请设置 `$site_path`
+   3. 默认支持伪静态，如果需要关闭，请将 `$url_static` 设置为 `false`
 4. 如果想要启用数据库导出功能，请允许 PHP 使用 `system` 函数
-5. 支持二级目录，请在 `include/config.php` 中进行配置
+5. 请按照 [伪静态设置](#伪静态设置) 配置伪静态
 
 ## 手册文件格式
 
