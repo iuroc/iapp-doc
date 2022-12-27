@@ -39,8 +39,8 @@ $index = new Index();
     </script>
     <style>
         .bookListItem {
-            border-left: 8px solid var(--bs-success);
-            border-bottom: 3px solid var(--bs-success);
+            border-left: 5px solid var(--bs-secondary);
+            border-bottom: 3px solid var(--bs-secondary);
         }
     </style>
 </head>
@@ -56,10 +56,11 @@ $index = new Index();
                 <a title="' . strip_tags($book_info['title']) . '"
                     class="bookListItem justify-content-between card card-body shadow-sm h-100"
                     href="' . $index->get_book_url($book_info['id']) . '" role="button">
-                    <div class="h5 text-truncate">' . $book_info['title'] . '</div>
+                    <div class="text-center"><img src="icon/readme.svg" width="55" class="mb-2"></div>
+                    <div class="h5 text-truncate mb-3 text-center">' . $book_info['title'] . '</div>
                     <div class="mb-2 limit-line-4 text-muted text-justify">'
                     . strip_tags(mb_substr($book_info['intro'], 0, 80)) . '</div>
-                    <div class="text-muted small">' . $book_info['update_time'] . ' 最后更新</div>
+                    <div class="text-muted small text-center">' . $book_info['update_time'] . ' 最后更新</div>
                 </a>
             </div>';
             }
