@@ -32,8 +32,8 @@ $index = new Index();
 <head>
     <?php require('./include/head.php') ?>
     <title><?php echo Config::$site_title ?> - 鹏优创</title>
-    <meta name="description" content="<?php echo Config::$site_title ?> <?php echo Config::$description ?>">
-    <meta name="og:description" content="<?php echo Config::$site_title ?> <?php echo Config::$description ?>">
+    <meta name="description" content="<?php echo Config::$site_title ?>，<?php echo Config::$description ?>">
+    <meta name="og:description" content="<?php echo Config::$site_title ?>，<?php echo Config::$description ?>">
     <script>
         const PAGE_NAME = 'home' // 页面标识
     </script>
