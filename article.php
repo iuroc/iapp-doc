@@ -156,6 +156,7 @@ function parse_content($text)
         if (codeEles) {
             codeEles.forEach(ele => {
                 ele.contentEditable = true
+                ele.spellcheck = false
             })
         }
         let tableEles = document.querySelectorAll('#content table')
