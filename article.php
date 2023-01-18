@@ -73,7 +73,7 @@ function parse_content($text)
     <meta property="og:site_name" content="<?php echo Config::$site_title ?>">
     <meta name="og:description" content="<?php echo $description ?>">
     <link rel="stylesheet" href="css/article.css">
-    <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/5.1.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/5.1.0/github-markdown-light.min.css">
     <link rel="stylesheet" href="css/prism-default.css">
     <script>
         const PAGE_NAME = 'book' // 页面标识
