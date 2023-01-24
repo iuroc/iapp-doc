@@ -70,7 +70,7 @@ class Search extends Public_fun
     {
         $table = Config::$table['article'];
         $table_2 = Config::$table['book'];
-        $sql = "SELECT article.*, book.`title` AS `book_title` FROM `$table` AS article, `$table_2` AS book WHERE article.`content` LIKE '%{$this->keyword}%' AND article.`book_id` = book.`id`;";
+        $sql = "SELECT article.*, book.`title` AS `book_title` FROM `$table` AS article, `$table_2` AS book WHERE CONCAT(book.`title`, article.`content`) LIKE '%{$this->keyword}%' AND article.`book_id` = book.`id`;";
         $result = mysqli_query(Init::$conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $id = $row['id'];
